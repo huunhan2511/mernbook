@@ -15,7 +15,7 @@ export default function ModalEditVoucher(props) {
     const handleEdit = async (event) =>{
       const token = localStorage.getItem('accessToken');
       event.preventDefault();
-      await axios.patch("http://localhost:5000/vouchers/"+props.dataModal._id,values,{
+      await axios.patch("https://sagobook.onrender.com/vouchers/"+props.dataModal._id,values,{
         headers:{
           'Authorization' : `Bearer ${token}` 
         }

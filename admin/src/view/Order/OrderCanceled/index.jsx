@@ -26,7 +26,7 @@ export default function OrderCanceled({flag}) {
             }
         }
         const fetchData = async ()=>{
-            await axios.get("http://localhost:5000/orders?status=5",config).then(response=>{
+            await axios.get("https://sagobook.onrender.com/orders?status=5",config).then(response=>{
                 setOrders(response.data)
             })
         }

@@ -20,9 +20,9 @@ export default function CreateProduct({handleAdd}) {
         }
       }
       const fetchData = async () => {
-        const responseCategory = await axios.get("http://localhost:5000/category",config);
-        const responseAuthor = await axios.get("http://localhost:5000/authors",config);
-        const responsePublisher = await axios.get("http://localhost:5000/publishers",config);
+        const responseCategory = await axios.get("https://sagobook.onrender.com/category",config);
+        const responseAuthor = await axios.get("https://sagobook.onrender.com/authors",config);
+        const responsePublisher = await axios.get("https://sagobook.onrender.com/publishers",config);
         setAuthor(responseAuthor.data);
         setCategory(responseCategory.data);
         setPublisher(responsePublisher.data);
@@ -41,7 +41,7 @@ export default function CreateProduct({handleAdd}) {
               data.append(key,values[key])
           }
           const token = localStorage.getItem('accessToken')
-          await axios.post("http://localhost:5000/products",data,{
+          await axios.post("https://sagobook.onrender.com/products",data,{
             headers :{
               'Authorization' : `Bearer ${token}`,
               'content-type': 'multipart/form-data'

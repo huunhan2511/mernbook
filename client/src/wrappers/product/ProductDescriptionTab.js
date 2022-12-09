@@ -16,7 +16,7 @@ const ProductDescriptionTab = ({
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState();
   const fetchData = async () => {
-    const result = await axios.get(`http://localhost:5000/comments/${productID}`);
+    const result = await axios.get(`https://sagobook.onrender.com/comments/${productID}`);
     const data = result.data;
     setComments(data);
   };
@@ -45,7 +45,7 @@ const ProductDescriptionTab = ({
       product: productID,
       context: newComment.context
     }
-    await axios.post('http://localhost:5000/comments',
+    await axios.post('https://sagobook.onrender.com/comments',
       cmt,
       {
         headers: {

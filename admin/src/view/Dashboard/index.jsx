@@ -45,7 +45,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchRevenue = async () =>{
-            await axios.get("http://localhost:5000/orders/turnover?year="+yearRevenue,config).then(response=>{
+            await axios.get("https://sagobook.onrender.com/orders/turnover?year="+yearRevenue,config).then(response=>{
                     setRevenue(response.data)
             })
         }
@@ -53,7 +53,7 @@ export default function Dashboard() {
     }, [yearRevenue])
     useEffect(()=>{
         const fetchOrderChart = async () =>{
-            await axios.get("http://localhost:5000/orders/analytics?year="+yearOrder,config).then(response=>{
+            await axios.get("https://sagobook.onrender.com/orders/analytics?year="+yearOrder,config).then(response=>{
                     setOrderChart(response.data)
             })
             
@@ -62,7 +62,7 @@ export default function Dashboard() {
     },[yearOrder])
     useEffect(()=>{
         const fetchData = async () =>{
-            await axios.get("http://localhost:5000/orders/analytics?year="+getYear(),config).then(response=>{
+            await axios.get("https://sagobook.onrender.com/orders/analytics?year="+getYear(),config).then(response=>{
                     setQuantityOrder(response.data)
             })
             

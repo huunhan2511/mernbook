@@ -13,7 +13,7 @@ const ProductTabLeft = ({ location }) => {
   let { id } = useParams();
   const [product, setProduct] = useState();
   const fetchData = async () => {
-        const result = await axios.get(`http://localhost:5000/products/${id}`);
+        const result = await axios.get(`https://sagobook.onrender.com/products/${id}`);
         const data = result.data;
         setProduct(data);
   };

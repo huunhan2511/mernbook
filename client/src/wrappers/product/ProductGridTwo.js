@@ -15,7 +15,7 @@ const ProductGridTwo = ({
 }) => {
   const [products, setProducts] = useState();
   const fetchData = async () => {
-        let results = await axios.get('http://localhost:5000/');
+        let results = await axios.get('https://sagobook.onrender.com/');
         results = results.data;
         switch(type) {
           case 'newArrival':

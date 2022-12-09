@@ -30,7 +30,7 @@ export default function OrderDetail() {
     useEffect(() => {
         
         const fetchData = async () => {
-        await axios.get("http://localhost:5000/orders/"+id,config).then(response =>{
+        await axios.get("https://sagobook.onrender.com/orders/"+id,config).then(response =>{
                 setOrder(response.data.Order)
                 setOrderDetail(response.data.OrderDetail)
         })
@@ -50,7 +50,7 @@ export default function OrderDetail() {
         const status = {
             status : order.status._id+1
         }
-        await axios.patch("http://localhost:5000/orders/"+order._id,status,config).then(response=>{
+        await axios.patch("https://sagobook.onrender.com/orders/"+order._id,status,config).then(response=>{
                 alert(response.data.Message);
                 handleEditFlag()
         })

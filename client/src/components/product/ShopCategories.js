@@ -6,7 +6,7 @@ const ShopCategories = ({ getSortParams }) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-        const result = await axios("http://localhost:5000/category");
+        const result = await axios("https://sagobook.onrender.com/category");
         setCategories(result.data);
     };
     fetchData();    

@@ -22,7 +22,7 @@ export default function ContentManageCategory() {
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
         const fetchData = async () =>{
-            await axios.get("http://localhost:5000/category",{
+            await axios.get("https://sagobook.onrender.com/category",{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
@@ -43,7 +43,7 @@ export default function ContentManageCategory() {
         }
         else{
             event.preventDefault();
-            await axios.post("http://localhost:5000/category",values,{
+            await axios.post("https://sagobook.onrender.com/category",values,{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
@@ -69,7 +69,7 @@ export default function ContentManageCategory() {
     }
     const deleteCategory = async (data) =>{
         const token = localStorage.getItem("accessToken");
-        await axios.delete("http://localhost:5000/category/"+data,
+        await axios.delete("https://sagobook.onrender.com/category/"+data,
         {
             headers:{
                 'Authorization' : `Bearer ${token}` 

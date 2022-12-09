@@ -4,7 +4,7 @@ import axios from 'axios';
 const CtaOne = ({ spaceTopClass, backgroundImage }) => {
   const [product, setProduct] = useState();
   const fetchData = async () => {
-        let results = await axios.get('http://localhost:5000/');
+        let results = await axios.get('https://sagobook.onrender.com/');
         results = results.data;
         setProduct(results.new);            
   };

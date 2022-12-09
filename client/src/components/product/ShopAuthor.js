@@ -6,7 +6,7 @@ const ShopAuthor = ({ getSortParams }) => {
   const [authors, setAuthors] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-        const result = await axios("http://localhost:5000/authors");
+        const result = await axios("https://sagobook.onrender.com/authors");
         setAuthors(result.data);
     };
     fetchData();    

@@ -21,7 +21,7 @@ export default function OrderTranport({flag,handleEdit}) {
         let status = {
             status : 4
         }
-        await axios.patch("http://localhost:5000/orders/"+id,status,config).then(response=>{
+        await axios.patch("https://sagobook.onrender.com/orders/"+id,status,config).then(response=>{
                 alert(response.data.Message);
                 handleEdit()
         })
@@ -29,7 +29,7 @@ export default function OrderTranport({flag,handleEdit}) {
     useEffect(()=>{
         
         const fetchData = async ()=>{
-        await axios.get("http://localhost:5000/orders?status=3",config).then(response=>{
+        await axios.get("https://sagobook.onrender.com/orders?status=3",config).then(response=>{
                 setOrders(response.data)
             })
         }

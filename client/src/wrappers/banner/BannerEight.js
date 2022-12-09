@@ -5,7 +5,7 @@ import axios from 'axios';
 const BannerEight = () => {
   const [products, setProducts] = useState();
   const fetchData = async () => {
-        let results = await axios.get('http://localhost:5000/');
+        let results = await axios.get('https://sagobook.onrender.com/');
         results = results.data;
         setProducts(results.hot);            
   };

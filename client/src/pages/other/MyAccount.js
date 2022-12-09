@@ -26,7 +26,7 @@ const MyAccount = ({ location }) => {
   const fetchInformation = async (event) => {
     let token = localStorage.getItem("accessToken");
     await axios.get(
-      "http://localhost:5000/accounts/information",
+      "https://sagobook.onrender.com/accounts/information",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ const MyAccount = ({ location }) => {
   };
   const fetchHistoryOrders = async () =>{
       let token = localStorage.getItem("accessToken");
-      const response = await axios.get("http://localhost:5000/accounts/orders",{
+      const response = await axios.get("https://sagobook.onrender.com/accounts/orders",{
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -54,7 +54,7 @@ const MyAccount = ({ location }) => {
   }
   const handleRepayment = async (orderId) =>{
     let token = localStorage.getItem("accessToken");
-    let response = await axios.post('http://localhost:5000/payment/re-payment',
+    let response = await axios.post('https://sagobook.onrender.com/payment/re-payment',
         {
           id : orderId
         },
@@ -90,7 +90,7 @@ const MyAccount = ({ location }) => {
   const handleInfomations = async (event) =>{
     event.preventDefault();
     let token = localStorage.getItem("accessToken");
-    const response = await axios.patch("http://localhost:5000/accounts/information",
+    const response = await axios.patch("https://sagobook.onrender.com/accounts/information",
                     informations,
                     {
                       headers: {
@@ -118,7 +118,7 @@ const MyAccount = ({ location }) => {
         alert('Vui lòng xác nhận mật khẩu mới');
     }
       else {
-        const response = await axios.patch("http://localhost:5000/accounts/change-password", passwords,
+        const response = await axios.patch("https://sagobook.onrender.com/accounts/change-password", passwords,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,

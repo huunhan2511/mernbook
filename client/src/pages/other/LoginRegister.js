@@ -36,7 +36,7 @@ const LoginRegister = ({ location }) => {
   }
   const handleRegister = async (event) =>{
     event.preventDefault();
-    const response = await axios.post("http://localhost:5000/auth/register",values);
+    const response = await axios.post("https://sagobook.onrender.com/auth/register",values);
     if(response.data.Message === "Tạo tài khoản thành công"){
       alert(response.data.Message);    
     } else {
@@ -45,7 +45,7 @@ const LoginRegister = ({ location }) => {
   }
   const handleLogin = async (event) =>{
     event.preventDefault();
-    const response = await axios.post("http://localhost:5000/auth/login",login);
+    const response = await axios.post("https://sagobook.onrender.com/auth/login",login);
     let message = response.data.Message;
     if (message) {
       //If login failed

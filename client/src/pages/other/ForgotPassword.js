@@ -20,7 +20,7 @@ const ForgotPassword = ({ location }) => {
   }
   const handleSubmitEmail = async (event) =>{
       event.preventDefault();
-      const response = await axios.post("http://localhost:5000/auth/reset-password",values)
+      const response = await axios.post("https://sagobook.onrender.com/auth/reset-password",values)
       if(response.data.Error){
         alert(response.data.Error)
       }else{

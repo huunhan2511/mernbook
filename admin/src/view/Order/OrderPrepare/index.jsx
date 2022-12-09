@@ -23,7 +23,7 @@ export default function OrderPrepare({flag,handleEdit}) {
         const status = {
             status : 3
         }
-        await axios.patch("http://localhost:5000/orders/"+id,status,config).then(response=>{
+        await axios.patch("https://sagobook.onrender.com/orders/"+id,status,config).then(response=>{
             alert(response.data.Message);
             handleEdit()
         })
@@ -31,7 +31,7 @@ export default function OrderPrepare({flag,handleEdit}) {
     useEffect(()=>{
         
         const fetchData = async ()=>{
-            await axios.get("http://localhost:5000/orders?status=2",config).then(response=>{
+            await axios.get("https://sagobook.onrender.com/orders?status=2",config).then(response=>{
                 setOrders(response.data)
             })
         }

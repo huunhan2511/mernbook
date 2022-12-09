@@ -13,7 +13,7 @@ export default function ModalEditCategory(props) {
     const handleEdit = async (event) =>{
       const token = localStorage.getItem('accessToken');
       event.preventDefault();
-      await axios.patch("http://localhost:5000/category/"+props.dataModal._id,values,{
+      await axios.patch("https://sagobook.onrender.com/category/"+props.dataModal._id,values,{
         headers:{
           'Authorization' : `Bearer ${token}` 
         }

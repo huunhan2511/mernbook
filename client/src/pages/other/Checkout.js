@@ -20,7 +20,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
   const fetchInformation = async (event) => {
     let token = localStorage.getItem("accessToken");
     await axios.get(
-      "http://localhost:5000/accounts/information",
+      "https://sagobook.onrender.com/accounts/information",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -99,7 +99,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
   const handleVoucher = async (event) => {
     event.preventDefault();
     let token = localStorage.getItem("accessToken");
-    const response = await axios.get('http://localhost:5000/vouchers/apply/'+voucher,
+    const response = await axios.get('https://sagobook.onrender.com/vouchers/apply/'+voucher,
         {
           headers: {
           Authorization: `Bearer ${token}`,
@@ -133,7 +133,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
       "cart": cartItems
     }
     console.log(order);
-    let response = await axios.post('http://localhost:5000/orders',
+    let response = await axios.post('https://sagobook.onrender.com/orders',
         order,
         {
           headers: {
@@ -169,7 +169,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
       "bankCode": "NCB",
       "cart": cartItems
     }
-    let response = await axios.post('http://localhost:5000/orders',
+    let response = await axios.post('https://sagobook.onrender.com/orders',
         order,
         {
           headers: {

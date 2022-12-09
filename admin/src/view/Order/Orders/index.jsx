@@ -19,7 +19,7 @@ export default function Orders({flag}) {
             }
         }
         const fetchData = async ()=>{
-            await axios.get("http://localhost:5000/orders",config).then(response =>{
+            await axios.get("https://sagobook.onrender.com/orders",config).then(response =>{
                 setOrders(response.data)
             })
         }

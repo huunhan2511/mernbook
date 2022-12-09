@@ -8,7 +8,7 @@ export default function ContentManageUser() {
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
         const fetchData = async ()=>{
-            await axios.get("http://localhost:5000/accounts",{
+            await axios.get("https://sagobook.onrender.com/accounts",{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
