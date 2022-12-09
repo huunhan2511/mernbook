@@ -1,9 +1,9 @@
-import informationModel from '../models/Information.model.js';
+import informationModel from '../models/information.model.js';
 import Information from '../entities/information.entity.js';
 import errorMessage from '../helpers/error.message.helper.js';
 
 async function getInformationByID(_id) {
-  try { 
+  try {
     return await informationModel.getInformationByID(_id);
   }
   catch (err) {
@@ -21,7 +21,7 @@ async function updateInformationByID(_id, fullname, phone, address) {
     let err = currentInformation.validateSync();
     if (err) return errorMessage(err);
     await informationModel.update(_id, fullname, phone, address);
-    return {Message : 'Cập nhật thông tin thành công'};
+    return { Message: 'Cập nhật thông tin thành công' };
   }
   catch (err) {
     return errorMessage(err);
