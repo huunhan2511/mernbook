@@ -1,8 +1,8 @@
 # SAGOBO Book-store
 Description: An e-commerce bookstore website using RESTful API with some basic features: register/login, shopping, order manage/tracking,... most special with sand box virtual online pay (VNPAY).
 
-> ### **Live Demo**: 
-> ### **API Server**: 
+> ### **Live Demo**: [mernbook.vercel.app](https://mernbook.vercel.app/)
+> ### **API Server**: [sagobook.onrender.com](https://sagobook.onrender.com/)
 
 ## Tech Stack (MERN)
 
