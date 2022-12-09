@@ -1,0 +1,33 @@
+.cardOrderDetail {
+  &__rowDetail {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.btnCancelOrder {
+  background-color: rgb(255, 255, 255);
+  border: medium none;
+  color: rgb(214, 57, 57);
+  display: inline-block;
+  line-height: 1;
+  padding: 10px 20px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  &:hover {
+    background: rgb(214, 67, 67);
+    p {
+      color: #fff;
+    }
+    i {
+      color: #fff;
+    }
+  }
+  p {
+    color: rgb(214, 57, 57);
+  }
+  i {
+    font-size: 26px;
+    padding: 0.5rem;
+  }
+}

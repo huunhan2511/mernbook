@@ -1,0 +1,101 @@
+.cardRevenue{
+    height: auto;
+    &__selectyear{
+        display: flex;
+        justify-content: flex-end;
+        padding: 1rem;
+        select{
+            width: 30%;
+        }
+    }
+    .card-title{
+        padding :1rem 1rem;
+        font-size: 25px;
+        color: #fff;
+        background-color: #007bff;
+    }
+    .card-body{
+        height: 400px;
+    }
+}
+.cardOrder{
+    height: auto;
+    &__selectyear{
+        display: flex;
+        justify-content: flex-end;
+        padding: 1rem;
+        select{
+            width: 30%;
+        }
+    }
+    .card-title{
+        padding :1rem 1rem;
+        font-size: 25px;
+        color: #fff;
+        background-color: #007bff;
+    }
+    .card-body{
+        margin: auto;
+        width: 400px;
+        padding: 10px;
+        height: 400px;
+    }
+}
+.cardLabel{
+    
+    .card-title{
+        color: #fff;
+        font-size: 25px;
+    }
+}
+.quantityOrder{
+    display: flex;
+    justify-content: space-between;
+    .card{
+        width: 15%;
+        height: 10rem;
+    }
+    .card-title{
+        height: 3rem;
+    }
+    &__Confirm{
+        padding :0 1rem;
+        p{  
+            font-size: 20px;
+            font-weight: bold;
+            color: #D7DF01;
+        }
+    }
+    &__Prepare{
+        padding :0 1rem;
+        p{
+            font-size: 20px;
+            font-weight: bold;
+            color: #FE8000;
+        }
+    }
+    &__Tranport{
+        padding :0 1rem;
+        p{
+            font-size: 20px;
+            font-weight: bold;
+            color: #0404B4;
+        }
+    }
+    &__Delivered{
+        padding :0 1rem;
+        p{
+            font-size: 20px;
+            font-weight: bold;
+            color: #50C836;
+        }
+    }
+    &__Cancel{
+        padding :0 1rem;
+        p{
+            font-size: 20px;
+            font-weight: bold;
+            color: #DF0101;
+        }
+    }
+}

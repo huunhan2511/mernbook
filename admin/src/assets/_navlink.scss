@@ -1,0 +1,106 @@
+@media (min-width: 768px) {
+  .navLink {
+    margin: 1rem 0;
+    a {
+      display: block;
+      text-decoration: none;
+      padding: 1rem 1rem;
+      width: 80%;
+      margin: auto;
+      color: black;
+    }
+    a:visited {
+      color: black;
+    }
+    a:hover {
+      color: black;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .navLink__icon {
+      padding: 0 0.5rem;
+    }
+  }
+  .viewAdmin {
+    display: flex;
+    position: relative;
+    height: 100%;
+    &__nav {
+      position: fixed;
+      height: 100%;
+      background: linear-gradient(110deg, #cbe4ff 60%, #82beff 60%);
+      min-width: 20%;
+      box-shadow: 10px 0 5px -2px #888;
+      &--header {
+        padding: 1.5rem;
+      }
+      &--header img {
+        margin: auto;
+        display: block !important;
+        max-height: 50%;
+      }
+      &--body {
+        display: block !important;
+        margin: 2rem 0;
+        //background-color: white;
+      }
+      &--hamburger {
+        display: none;
+      }
+    }
+    &__content {
+      position: absolute;
+      left: 20%;
+      padding: 0 2%;
+      min-width: 80%;
+      display: inline;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .navLink {
+    margin: 1rem 0;
+    a {
+      display: block;
+      text-decoration: none;
+      padding: 1rem 1rem;
+      width: 80%;
+      margin: auto;
+      color: black;
+    }
+    a:visited {
+      color: black;
+    }
+    a:hover {
+      color: black;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .navLink__icon {
+      padding: 0 0.5rem;
+    }
+  }
+  .viewAdmin {
+    &__nav {
+      background: linear-gradient(110deg, #cbe4ff 60%, #82beff 60%);
+      &--header img {
+        display: none;
+        min-width: 100%;
+      }
+      &--body {
+        display: none;
+      }
+      &--hamburger {
+        i {
+          padding: 1rem 2rem;
+          cursor: pointer;
+        }
+      }
+    }
+    &__content {
+    }
+  }
+}
+.activeNav {
+  color: #007bff;
+}

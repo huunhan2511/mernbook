@@ -1,0 +1,7 @@
+{
+  "vnp_TmnCode":"WF418B56",
+  "vnp_HashSecret":"PDHLDMVZALHVIWZASQVXCIUVKLDDECLL",
+  "vnp_Url":"https://sandbox.vnpayment.vn/paymentv2/vpcpay.html",
+  "vnp_ReturnUrl": "http://localhost:5000/payment/vnpay_ipn"
+}
+  

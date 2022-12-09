@@ -1,0 +1,24 @@
+[
+    {
+      "id": "1",
+      "name": "Thái Kiến Hào",
+      "position": "Developer",
+      "image": "/assets/img/team/team-1.jpg",
+      "fbLink": "//www.facebook.com/mrtkh1220"
+    },
+    {
+      "id": "2",
+      "name": "Nguyễn Hữu Nhân",
+      "position": "Developer",
+      "image": "/assets/img/team/team-2.jpg",
+      "fbLink": "//www.facebook.com/100007412445807"
+    },
+    {
+      "id": "3",
+      "name": "Nguyễn M. Phương Nam",
+      "position": "Developer",
+      "image": "/assets/img/team/team-3.jpg",
+      "fbLink": "//www.facebook.com/phwqnam"
+    }
+  ]
+  
