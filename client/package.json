@@ -61,7 +61,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.14.0",
+    "node-sass": "^8.0.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }
