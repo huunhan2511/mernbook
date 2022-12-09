@@ -11,7 +11,7 @@
       "name": "Nguyễn Hữu Nhân",
       "position": "Developer",
       "image": "/assets/img/team/team-2.jpg",
-      "fbLink": "//www.facebook.com/100007412445807"
+      "fbLink": "//www.facebook.com/nhannh2511"
     },
     {
       "id": "3",
@@ -19,6 +19,13 @@
       "position": "Developer",
       "image": "/assets/img/team/team-3.jpg",
       "fbLink": "//www.facebook.com/phwqnam"
+    },
+    {
+      "id": "4",
+      "name": "Âu Khánh Toàn",
+      "position": "Developer",
+      "image": "/assets/img/team/team-4.jpg",
+      "fbLink": "//www.facebook.com/khanhtoan26"
     }
   ]
   
