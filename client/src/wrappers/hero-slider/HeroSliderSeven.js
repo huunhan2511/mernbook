@@ -12,7 +12,6 @@ const HeroSliderSeven = () => {
       delay: 5000,
       disableOnInteraction: false
     },
-    watchSlidesVisibility: true,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev"

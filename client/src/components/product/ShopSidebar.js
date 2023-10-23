@@ -4,10 +4,8 @@ import ShopSearch from "../../components/product/ShopSearch";
 import ShopCategories from "../../components/product/ShopCategories";
 import ShopAuthor from "../../components/product/ShopAuthor";
 import ShopPublisher from "../../components/product/ShopPublisher";
-// import ShopTag from "../../components/product/ShopTag";
 
 const ShopSidebar = ({ getSortParams, sideSpaceClass, getSearchByKeyword }) => {
-  // const uniqueCategories = getUniqueCategories(products);
 
   return (
     <div className={`sidebar-style ${sideSpaceClass ? sideSpaceClass : ""}`}>

@@ -9,7 +9,6 @@ const BrandLogoSliderTwo = () => {
     loop: true,
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false
     },
     grabCursor: true,
     breakpoints: {

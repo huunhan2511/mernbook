@@ -8,9 +8,6 @@ import { addToCart } from "../../redux/actions/cartActions";
 const ProductDescriptionInfo = ({
   product,
   discountedPrice,
-  currency,
-  finalDiscountedPrice,
-  finalProductPrice,
   cartItems,
   addToast,
   addToCart,
@@ -30,20 +27,15 @@ const ProductDescriptionInfo = ({
       <div className="product-details-price">
         {discountedPrice !== null ? (
           <Fragment>
-            <span>{currency.currencySymbol + product.price}</span>{" "}
+            <span>{ product.price}</span>{" "}
             <span className="old">
-              {currency.currencySymbol + product.price}
+              { product.price}
             </span>
           </Fragment>
         ) : (
           <span>{formatter.format(product.price)} </span>
         )}
       </div>
-
-      <div className="pro-details-list">
-        {/* <p>{product.description}</p> */}
-      </div>
-
       
         <div className="pro-details-quality">
           <div className="cart-plus-minus">
@@ -101,7 +93,7 @@ const ProductDescriptionInfo = ({
       {product.category.name ? (
         <div className="pro-details-meta">
           <span>Thể loại: </span>
-          <Link to={process.env.PUBLIC_URL + "/products"}> {product.category.name} </Link>
+          {product.category.name}
         </div>
       ) : (
         ""
@@ -110,7 +102,7 @@ const ProductDescriptionInfo = ({
       {product.author.name ? (
         <div className="pro-details-meta">
           <span>Tác giả :</span>
-          <Link to={process.env.PUBLIC_URL + "/products"}> {product.author.name} </Link>
+          {product.author.name}
         </div>
       ) : (
         ""
@@ -119,49 +111,11 @@ const ProductDescriptionInfo = ({
       {product.publisher.name ? (
         <div className="pro-details-meta">
           <span>Nhà xuất bản/Nhà phát hành :</span>
-          <Link to={process.env.PUBLIC_URL + "/products"}> {product.publisher.name} </Link>
+          {product.publisher.name}
         </div>
       ) : (
         ""
       )}
-
-      {/* {product.printLength ? (
-        <div className="pro-details-meta">
-          <span>Số trang: {product.printLength} </span>
-        </div>
-      ) : (
-        ""
-      )} */}
-
-      <div className="pro-details-social">
-        <ul>
-          <li>
-            <a href="//facebook.com">
-              <i className="fa fa-facebook" />
-            </a>
-          </li>
-          <li>
-            <a href="//dribbble.com">
-              <i className="fa fa-dribbble" />
-            </a>
-          </li>
-          <li>
-            <a href="//pinterest.com">
-              <i className="fa fa-pinterest-p" />
-            </a>
-          </li>
-          <li>
-            <a href="//twitter.com">
-              <i className="fa fa-twitter" />
-            </a>
-          </li>
-          <li>
-            <a href="//linkedin.com">
-              <i className="fa fa-linkedin" />
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 };
@@ -170,10 +124,7 @@ ProductDescriptionInfo.propTypes = {
   addToCart: PropTypes.func,
   addToast: PropTypes.func,
   cartItems: PropTypes.array,
-  currency: PropTypes.object,
   discountedPrice: PropTypes.number,
-  finalDiscountedPrice: PropTypes.number,
-  finalProductPrice: PropTypes.number,
   product: PropTypes.object,
 };
 

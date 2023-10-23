@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import { getProducts } from "../../helpers/product";
 import ProductGridSingleTwo from "../../components/product/ProductGridSingleTwo";
 import { addToCart } from "../../redux/actions/cartActions";
 import axios from 'axios';
