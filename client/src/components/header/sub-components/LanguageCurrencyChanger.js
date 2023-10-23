@@ -1,18 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const LanguageCurrencyChanger = ({
-  currency,
-  changeCurrency,
-  currentLanguageCode,
-  dispatch
-}) => {
-
-  // const changeCurrencyTrigger = e => {
-  //   const currencyName = e.target.value;
-  //   changeCurrency(currencyName);
-  // };
-
+const LanguageCurrencyChanger = () => {
   return (
     <div className="language-currency-wrap">
       <div className="same-language-currency">
@@ -22,11 +11,6 @@ const LanguageCurrencyChanger = ({
   );
 };
 
-LanguageCurrencyChanger.propTypes = {
-  changeCurrency: PropTypes.func,
-  currency: PropTypes.object,
-  currentLanguageCode: PropTypes.string,
-  dispatch: PropTypes.func
-};
+LanguageCurrencyChanger.propTypes = {};
 
 export default LanguageCurrencyChanger;

@@ -38,12 +38,7 @@ const HeaderTwo = ({
             
             <div className="col-lg-5 col-md-8 col-12">
               {/* language currency changer */}
-              <LanguageCurrencyChanger
-                currency={currency}
-                changeCurrency={changeCurrency}
-                currentLanguageCode={currentLanguageCode}
-                dispatch={dispatch}
-              />
+              <LanguageCurrencyChanger/>
             </div>
 
             <div className="col-lg-2 d-none d-lg-block text-center">
