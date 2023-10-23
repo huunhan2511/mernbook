@@ -42,11 +42,6 @@ return (
             }
           >
             <Switch>
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + "/"}
-                component={HomeBookStore}
-              />
 
               {/* Homepages */}
               <Route

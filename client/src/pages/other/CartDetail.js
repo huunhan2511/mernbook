@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React, { useState,useEffect } from "react";
 import { Modal,Table } from "react-bootstrap";
 import axios from "axios";
+import { formatter } from "../../helpers/product";
+
 let headerTable = ["Tên sản phẩm","Số lượng","Giá"]
 const CartDetail = ({id,handleEdit}) =>{
     const [flag,setFlag] = useState(true);
@@ -54,12 +56,6 @@ const CartDetail = ({id,handleEdit}) =>{
           };
           fetchData();
     }, [flag]);
-    const formatCash= (str) =>{
-        let text = String(str)
-        return text.split('').reverse().reduce((prev, next, index) => {
-          return ((index % 3) ? next : (next + ',')) + prev
-        })
-    }
     const handleCancel = async ({id}) =>{
         //HTTTP://LOCALHOST:5000/ACCOUNTS/ORDERS/:ID PATCH
         //body{status:5}
@@ -76,9 +72,6 @@ const CartDetail = ({id,handleEdit}) =>{
            }).catch((err)=>{
                console.log(err);
            }) 
-        }
-        else {
-            
         }
     }
     return (
@@ -117,15 +110,15 @@ const CartDetail = ({id,handleEdit}) =>{
                                 <hr className="m-2 "></hr>
                                 <div className="cardOrderDetail__rowDetail">
                                     <label  >Tổng giá : </label>
-                                    <p >{formatCash(order.totalPrice)} VNĐ</p>
+                                    <p >{formatter.format(order.totalPrice)}</p>
                                 </div>
                                 <div className="cardOrderDetail__rowDetail">
                                     <label  >Phí vận chuyển : </label>
-                                    <p >{formatCash(order.shipping)} VNĐ</p>
+                                    <p >{formatter.format(order.shipping)}</p>
                                 </div>
                                 <div className="cardOrderDetail__rowDetail">
                                     <label  >Tổng cộng : </label>
-                                    <p >{formatCash(order.grandTotal)} VNĐ</p>
+                                    <p >{formatter.format(order.grandTotal)}</p>
                                 </div>
                             </div>
                         </>
@@ -148,7 +141,7 @@ const CartDetail = ({id,handleEdit}) =>{
                                             <tr key={key}>
                                                 <td>{prod.name}</td>
                                                 <td>{prod.quantity}</td>
-                                                <td>{prod.price}</td>
+                                                <td>{formatter.format(prod.price)}</td>
                                             </tr>
                                         );
                                     })}

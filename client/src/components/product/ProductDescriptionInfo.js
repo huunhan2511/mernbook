@@ -44,19 +44,7 @@ const ProductDescriptionInfo = ({
         {/* <p>{product.description}</p> */}
       </div>
 
-      {product.affiliateLink ? (
-        <div className="pro-details-quality">
-          <div className="pro-details-cart btn-hover ml-0">
-            <a
-              href={product.affiliateLink}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Buy Now
-            </a>
-          </div>
-        </div>
-      ) : (
+      
         <div className="pro-details-quality">
           <div className="cart-plus-minus">
             <button
@@ -108,7 +96,7 @@ const ProductDescriptionInfo = ({
           </div>
 
         </div>
-      )}
+      
 
       {product.category.name ? (
         <div className="pro-details-meta">
