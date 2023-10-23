@@ -12,7 +12,7 @@ import {useHistory} from "react-router-dom";
 import provinces from "../../data/checkout/province.json";
 import {clearAllFromCart} from "../../redux/actions/cartActions";
 import { useToasts } from "react-toast-notifications";
-const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
+const Checkout = ({ cartItems, clearAllFromCart }) => {
   // Init
   let history = useHistory();
   const { addToast } = useToasts();
@@ -218,7 +218,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
                               <input 
                                 type="text" 
                                 name="fullname"
-                                // value={informations.fullname}
+                                value={informations.fullname ? informations.fullname : ''}
                                 onChange = {(event)=>onInfomationsChange(event)}
                                 required
                               />
@@ -232,7 +232,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
                                 type="text"
                                 name="phone"
                                 onChange = {(event)=>onInfomationsChange(event)}
-                                // value={informations.phone}
+                                value={informations.phone ? informations.phone : '' }
                                 required
                               />
                             </div>
@@ -282,11 +282,11 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
                               <label>Địa chỉ</label>
                               <input
                                 className="billing-address"
-                                placeholder="vd: 273 An Dương Vương"
+                                placeholder="Ví dụ: 273 An Dương Vương"
                                 type="text"
                                 name="address"
                                 onChange = {(event)=>onInfomationsChange(event)}
-                                // value={informations.address}
+                                value={informations.address ? informations.address : '' }
                                 required
                               />
                             </div>
@@ -438,7 +438,6 @@ Checkout.propTypes = {
 const mapStateToProps = state => {
   return {
     cartItems: state.cartData,
-    currency: state.currencyData
   };
 };
 const mapDispatchToProps = dispatch => {

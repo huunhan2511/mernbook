@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
-import { getDiscountPrice, formatter } from "../../helpers/product";
-import ProductModal from "./ProductModal";
+import { formatter } from "../../helpers/product";
 
 const ProductGridListSingle = ({
   product,  

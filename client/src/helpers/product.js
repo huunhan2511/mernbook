@@ -7,10 +7,6 @@ export const searchByKeyword = (products, keyword) =>{
   }
   return products;
 }
-// get product discount price
-export const getDiscountPrice = (price, discount) => {
-  return discount && discount > 0 ? price - price * (discount / 100) : null;
-};
 
 // get product cart quantity
 export const getProductCartQty = (cartItems, product) => {

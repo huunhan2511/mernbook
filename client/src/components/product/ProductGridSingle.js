@@ -1,19 +1,13 @@
 import PropTypes from "prop-types";
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
-import { getDiscountPrice, formatter } from "../../helpers/product";
+import { formatter } from "../../helpers/product";
 
 const ProductGridSingle = ({
   product,
   sliderClassName,
   spaceBottomClass
 }) => {
-  const [modalShow, setModalShow] = useState(false);
-  const { addToast } = useToasts();
-
-  const discountedPrice = getDiscountPrice(product.price, product.discount);
-
   return (
     <Fragment>
       <div

@@ -2,7 +2,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useToasts } from "react-toast-notifications";
-import { getDiscountPrice } from "../../helpers/product";
 import ProductDescriptionInfo from "../../components/product/ProductDescriptionInfo";
 import ProductImageGallerySideThumb from "../../components/product/ProductImageGallerySideThumb";
 
@@ -14,9 +13,7 @@ const ProductImageDescription = ({
   cartItems,
 }) => {
   const { addToast } = useToasts();
-  
-  const discountedPrice = getDiscountPrice(product.price, product.discount);
-  
+    
   return (
     <div
       className={`shop-area ${spaceTopClass ? spaceTopClass : ""} ${
@@ -40,7 +37,6 @@ const ProductImageDescription = ({
             {/* product description info */}
             <ProductDescriptionInfo
               product={product}
-              discountedPrice={discountedPrice}
               cartItems={cartItems}
               addToast={addToast}
             />

@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getProductCartQty, formatter } from "../../helpers/product";
 import { addToCart } from "../../redux/actions/cartActions";
@@ -69,8 +68,7 @@ const ProductDescriptionInfo = ({
                 }
                 disabled={productCartQty >= productStock}
               >
-                {" "}
-                Thêm vào giỏ{" "}
+                Thêm vào giỏ
               </button>
             ) : (
               <button disabled>Hết hàng</button>

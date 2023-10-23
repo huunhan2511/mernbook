@@ -14,7 +14,6 @@ const ProductGridSingleTwo = ({
 }) => {
   const [modalShow, setModalShow] = useState(false);
   const { addToast } = useToasts();
-
   return (
     <Fragment>
       <div
@@ -55,15 +54,12 @@ const ProductGridSingleTwo = ({
                       : ""
                   }
                   disabled={cartItem !== undefined && cartItem.quantity > 0}
-                  title={
-                    cartItem !== undefined ? "Added to cart" : "Thêm vào giỏ"
-                  }
+                  title="Thêm vào giỏ"
                 >
-                  {" "}
-                  <i className="fa fa-shopping-cart"></i>{" "}
+                  <i className="fa fa-shopping-cart"></i>
                 </button>
               ) : (
-                <button disabled className="active" title="Out of stock">
+                <button disabled className="active" title="Hết hàng">
                   <i className="fa fa-shopping-cart"></i>
                 </button>
               )}
