@@ -6,17 +6,11 @@ import { getDiscountPrice, formatter } from "../../helpers/product";
 import ProductModal from "./ProductModal";
 
 const ProductGridListSingle = ({
-  product,
-  addToCart,
-  cartItem,
+  product,  
   sliderClassName,
   spaceBottomClass
 }) => {
-  const [modalShow, setModalShow] = useState(false);
-  const { addToast } = useToasts();
 
-  const discountedPrice = getDiscountPrice(product.price, product.discount);
- 
   return (
     <Fragment>
       <div
@@ -44,20 +38,6 @@ const ProductGridListSingle = ({
                 ""
               )}
             </Link>
-
-            {product.discount || product.new ? (
-              <div className="product-img-badges">
-                {product.discount ? (
-                  <span className="pink">-{product.discount}%</span>
-                ) : (
-                  ""
-                )}
-                {product.new ? <span className="purple">Mới</span> : ""}
-              </div>
-            ) : (
-              ""
-            )}
-
           </div>
 
           <div className="product-content text-center">
@@ -67,41 +47,19 @@ const ProductGridListSingle = ({
               </Link>
             </h3>
             <div className="product-price">
-              {discountedPrice !== null ? (
-                <Fragment>
-                  
-                </Fragment>
-              ) : (
                 <span>{formatter.format(product.price)} </span>
-              )}
             </div>
           </div>
         </div>
       </div>
-      {/* product modal */}
-      <ProductModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        product={product}
-        cartitem={cartItem}
-        addtocart={addToCart}
-        addtoast={addToast}
-      />
     </Fragment>
   );
 };
 
 ProductGridListSingle.propTypes = {
-  addToCart: PropTypes.func,
-  addToCompare: PropTypes.func,
-  addToWishlist: PropTypes.func,
-  cartItem: PropTypes.object,
-  compareItem: PropTypes.object,
-  currency: PropTypes.object,
   product: PropTypes.object,
   sliderClassName: PropTypes.string,
   spaceBottomClass: PropTypes.string,
-  wishlistItem: PropTypes.object
 };
 
 export default ProductGridListSingle;

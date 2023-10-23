@@ -6,9 +6,6 @@ import { addToCart } from "../../redux/actions/cartActions";
 import axios from 'axios';
 const ProductGrid = ({
 	  category,
-  	products,
-  	currency,
-  	addToCart,
   	cartItems,
   	sliderClassName,
   	spaceBottomClass
@@ -31,8 +28,6 @@ const ProductGrid = ({
             sliderClassName={sliderClassName}
             spaceBottomClass={spaceBottomClass}
             product={product}
-            currency={currency}
-            addToCart={addToCart}
             cartItem={
               cartItems.filter(cartItem => cartItem._id === product._id)[0]
             }            

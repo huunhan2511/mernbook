@@ -7,7 +7,6 @@ import { addToCart } from "../../redux/actions/cartActions";
 
 const ProductDescriptionInfo = ({
   product,
-  discountedPrice,
   cartItems,
   addToast,
   addToCart,
@@ -25,16 +24,7 @@ const ProductDescriptionInfo = ({
     <div className="product-details-content ml-70">
       <h2>{product.name}</h2>
       <div className="product-details-price">
-        {discountedPrice !== null ? (
-          <Fragment>
-            <span>{ product.price}</span>{" "}
-            <span className="old">
-              { product.price}
-            </span>
-          </Fragment>
-        ) : (
           <span>{formatter.format(product.price)} </span>
-        )}
       </div>
       
         <div className="pro-details-quality">
@@ -124,7 +114,6 @@ ProductDescriptionInfo.propTypes = {
   addToCart: PropTypes.func,
   addToast: PropTypes.func,
   cartItems: PropTypes.array,
-  discountedPrice: PropTypes.number,
   product: PropTypes.object,
 };
 
