@@ -42,10 +42,6 @@ const cartReducer = (state = initState, action) => {
       const cartItem = cartItems.filter(
         item =>
           item.id === product._id &&
-          product.selectedProductColor &&
-          product.selectedProductColor === item.selectedProductColor &&
-          product.selectedProductSize &&
-          product.selectedProductSize === item.selectedProductSize &&
           (product.cartItemId ? product.cartItemId === item.cartItemId : true)
       )[0];
 
@@ -59,9 +55,7 @@ const cartReducer = (state = initState, action) => {
           }
         ];
       } else if (
-        cartItem !== undefined &&
-        (cartItem.selectedProductColor !== product.selectedProductColor ||
-          cartItem.selectedProductSize !== product.selectedProductSize)
+        cartItem !== undefined
       ) {
         return [
           ...cartItems,
@@ -79,8 +73,6 @@ const cartReducer = (state = initState, action) => {
                 quantity: product.quantity
                   ? item.quantity + product.quantity
                   : item.quantity + 1,
-                selectedProductColor: product.selectedProductColor,
-                selectedProductSize: product.selectedProductSize
               }
             : item
         );

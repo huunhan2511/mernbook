@@ -112,7 +112,7 @@ ShopGridFullWidth.propTypes = {
 
 const mapStateToProps = state => {
     return{
-        products: state.productData.products
+        
     }
 }
 

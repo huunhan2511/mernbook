@@ -7,9 +7,7 @@ export const DELETE_ALL_FROM_CART = "DELETE_ALL_FROM_CART";
 export const addToCart = (
   item,
   addToast,
-  quantityCount,
-  selectedProductColor,
-  selectedProductSize
+  quantityCount
 ) => {
   return dispatch => {
     if (addToast) {
@@ -19,17 +17,7 @@ export const addToCart = (
       type: ADD_TO_CART,
       payload: {
         ...item,
-        quantity: quantityCount,
-        selectedProductColor: selectedProductColor
-          ? selectedProductColor
-          : item.selectedProductColor
-          ? item.selectedProductColor
-          : null,
-        selectedProductSize: selectedProductSize
-          ? selectedProductSize
-          : item.selectedProductSize
-          ? item.selectedProductSize
-          : null
+        quantity: quantityCount
       }
     });
   };
