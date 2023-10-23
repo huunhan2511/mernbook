@@ -66,11 +66,8 @@ ProductTabLeft.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const productId = ownProps.match.params.id;
   return {
-    product: state.productData.products.filter(
-      single => single.id === productId
-    )[0]
+    
   };
 };
 

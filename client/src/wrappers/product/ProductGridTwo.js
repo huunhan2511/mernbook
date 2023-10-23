@@ -63,12 +63,6 @@ ProductGridTwo.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    products: getProducts(
-      state.productData.products,
-      ownProps.category,
-      ownProps.type,
-      ownProps.limit
-    ),
     currency: state.currencyData,
     cartItems: state.cartData,
   };
