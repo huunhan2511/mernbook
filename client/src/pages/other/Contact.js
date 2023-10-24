@@ -47,10 +47,10 @@ const Contact = ({location}) => {
                     </div>
                     <div className="contact-info-dec">
                       <p>
-                        <a href="mailto:urname@email.com">sagobo@sago.vn</a>
+                        <a href="mailto:sagobo@sago.vn">sagobo@sago.vn</a>
                       </p>
                       <p>
-                        <a href="//urwebsitenaem.com">sago.vn</a>
+                        <a href="#">sago.vn</a>
                       </p>
                     </div>
                   </div>
