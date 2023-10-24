@@ -16,7 +16,7 @@ function ipn(req, res) {
     })
 }
 function Repayment(req, res) {
-    let bankCode = 'NCB';
+    let bankCode = 'EXIMBANK';
     var ipAddr = req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
