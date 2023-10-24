@@ -8,12 +8,7 @@ import NavMenu from "../../components/header/NavMenu";
 import MobileMenu from "../../components/header/MobileMenu";
 import HeaderContact from "../../components/header/sub-components/HeaderContact";
 
-const HeaderTwo = ({
-  currency,
-  changeCurrency,
-  currentLanguageCode,
-  dispatch
-}) => {
+const HeaderTwo = ({}) => {
   const [scroll, setScroll] = useState(0);
   const [headerTop, setHeaderTop] = useState(0);
 
@@ -83,25 +78,7 @@ const HeaderTwo = ({
 };
 
 HeaderTwo.propTypes = {
-  changeCurrency: PropTypes.func,
-  currency: PropTypes.object,
-  currentLanguageCode: PropTypes.string,
-  dispatch: PropTypes.func
 };
 
-const mapStateToProps = state => {
-  return {
-    currency: state.currencyData
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(multilanguage(HeaderTwo));
+export default HeaderTwo;
