@@ -69,6 +69,7 @@ const MyAccount = ({ location }) => {
           alert('Máy chủ đăng gặp sự cố, vui lòng thử lại sau')
           return
         })
+        console.log(response.data)
     let tab = window.open(response.data, "_blank", 'noopener,noreferrer')
     tab=null;
   }
@@ -343,7 +344,7 @@ const MyAccount = ({ location }) => {
                                             <td>
                                               <button onClick = {()=>handleRepayment(order._id)}
                                                 disabled = {
-                                                            order.paymentMethod==="COD" || order.paymentMethod==="Online" && order.status!==1
+                                                            order.paymentMethod==="COD" || (order.paymentMethod==="Online" && order.status!==1)
                                                             ?
                                                             true
                                                             :
