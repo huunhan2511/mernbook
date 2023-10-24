@@ -10,7 +10,7 @@ import {useHistory} from "react-router-dom";
 import CartDetail from "./CartDetail.js";
 
 let headerTable = ["Mã đơn hàng","Trạng thái","Phương thức thanh toán","Chi tiết","Thanh toán"];
-const MyAccount = ({ location }) => {
+const MyAccount = ({  }) => {
   let history = useHistory();
   const [flag,setFlag] = useState(true); 
   const [informations, setInformations] = useState();
@@ -370,7 +370,6 @@ const MyAccount = ({ location }) => {
 };
 
 MyAccount.propTypes = {
-  location: PropTypes.object,
 };
 
 export default MyAccount;

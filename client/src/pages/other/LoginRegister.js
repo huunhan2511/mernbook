@@ -7,7 +7,7 @@ import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-const LoginRegister = ({ location }) => {
+const LoginRegister = ({}) => {
   
   const [values,setValue] = useState();
   const [login, setLogin] = useState();
@@ -163,7 +163,6 @@ const LoginRegister = ({ location }) => {
 };
 
 LoginRegister.propTypes = {
-  location: PropTypes.object
 };
 
 export default LoginRegister;

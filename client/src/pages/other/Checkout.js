@@ -430,8 +430,6 @@ const Checkout = ({ cartItems, clearAllFromCart }) => {
 
 Checkout.propTypes = {
   cartItems: PropTypes.array,
-  currency: PropTypes.object,
-  location: PropTypes.object,
   removeFromCart: PropTypes.func
 };
 

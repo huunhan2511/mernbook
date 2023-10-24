@@ -4,7 +4,7 @@ import React, { Fragment,useState} from "react";
 import MetaTags from "react-meta-tags";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-const ForgotPassword = ({ location }) => {
+const ForgotPassword = ({}) => {
   
   const [values,setValue] = useState();
   const inputChange = (event)=>{
@@ -79,7 +79,6 @@ const ForgotPassword = ({ location }) => {
 };
 
 ForgotPassword.propTypes = {
-  location: PropTypes.object
 };
 
 export default ForgotPassword;

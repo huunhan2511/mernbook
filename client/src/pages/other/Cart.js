@@ -16,7 +16,6 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 
 const Cart = ({
-  location,
   cartItems,
   decrementQty,
   addToCart,
@@ -237,7 +236,6 @@ Cart.propTypes = {
   cartItems: PropTypes.array,
   currency: PropTypes.object,
   decrementQty: PropTypes.func,
-  location: PropTypes.object,
   removeAllFromCart: PropTypes.func,
   removeFromCart: PropTypes.func
 };

@@ -5,7 +5,7 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import LocationMap from "../../components/contact/LocationMap";
 
-const Contact = ({ location }) => {
+const Contact = ({}) => {
 
   return (
     <Fragment>
@@ -114,7 +114,6 @@ const Contact = ({ location }) => {
 };
 
 Contact.propTypes = {
-  location: PropTypes.object
 };
 
 export default Contact;

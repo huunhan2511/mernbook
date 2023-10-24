@@ -6,7 +6,7 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import SectionTitleWithText from "../../components/section-title/SectionTitleWithText";
 import TeamMemberOne from "../../wrappers/team-member/TeamMemberOne";
 
-const About = ({ location }) => {
+const About = ({}) => {
 
   return (
     <Fragment>
@@ -31,7 +31,6 @@ const About = ({ location }) => {
 };
 
 About.propTypes = {
-  location: PropTypes.object
 };
 
 export default About;
