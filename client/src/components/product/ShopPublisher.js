@@ -59,7 +59,6 @@ const ShopPublisher = ({ getSortParams }) => {
 
 ShopPublisher.propTypes = {
   getSortParams: PropTypes.func,
-  publishers: PropTypes.array
 };
 
 export default ShopPublisher;
