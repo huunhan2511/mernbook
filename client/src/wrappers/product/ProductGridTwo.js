@@ -13,7 +13,7 @@ const ProductGridTwo = ({
 }) => {
   const [products, setProducts] = useState();
   const fetchData = async () => {
-        let results = await axios.get('https://sagobook.onrender.com/');
+        let results = await axios.get(process.env.REACT_APP_API_URL + '');
         results = results.data;
         switch(type) {
           case 'newArrival':

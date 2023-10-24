@@ -102,7 +102,7 @@ const Checkout = ({ cartItems, clearAllFromCart,location }) => {
   const handleVoucher = async (event) => {
     event.preventDefault();
     let token = localStorage.getItem("accessToken");
-    const response = await axios.get('https://sagobook.onrender.com/vouchers/apply/'+voucher,
+    const response = await axios.get(process.env.REACT_APP_API_URL + 'vouchers/apply/'+voucher,
         {
           headers: {
           Authorization: `Bearer ${token}`,
@@ -136,7 +136,7 @@ const Checkout = ({ cartItems, clearAllFromCart,location }) => {
       "cart": cartItems
     }
     console.log(order);
-    let response = await axios.post('https://sagobook.onrender.com/orders',
+    let response = await axios.post(process.env.REACT_APP_API_URL + 'orders',
         order,
         {
           headers: {
@@ -172,7 +172,7 @@ const Checkout = ({ cartItems, clearAllFromCart,location }) => {
       "bankCode": "NCB",
       "cart": cartItems
     }
-    let response = await axios.post('https://sagobook.onrender.com/orders',
+    let response = await axios.post(process.env.REACT_APP_API_URL + 'orders',
         order,
         {
           headers: {

@@ -45,7 +45,7 @@ const ProductDescriptionTab = ({
       product: productID,
       context: newComment.context
     }
-    await axios.post('https://sagobook.onrender.com/comments',
+    await axios.post(process.env.REACT_APP_API_URL + 'comments',
       cmt,
       {
         headers: {

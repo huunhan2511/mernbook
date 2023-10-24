@@ -57,7 +57,7 @@ const MyAccount = ({ location }) => {
   }
   const handleRepayment = async (orderId) =>{
     let token = localStorage.getItem("accessToken");
-    let response = await axios.post('https://sagobook.onrender.com/payment/re-payment',
+    let response = await axios.post(process.env.REACT_APP_API_URL + 'payment/re-payment',
         {
           id : orderId
         },

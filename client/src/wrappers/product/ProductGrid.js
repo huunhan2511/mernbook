@@ -12,7 +12,7 @@ const ProductGrid = ({
 }) => {
     const [relatedProducts, setRelatedProducts] = useState();
     const fetchRelatedProducts = async () => {
-		const result = await axios.get('https://sagobook.onrender.com/products/category/' + category)
+		const result = await axios.get(process.env.REACT_APP_API_URL + 'products/category/' + category)
 		const data = result.data.products;
 		setRelatedProducts(data);
 	}
