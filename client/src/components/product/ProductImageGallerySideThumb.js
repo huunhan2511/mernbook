@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import Swiper from "react-id-swiper";
 
-const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
+const ProductImageGallerySideThumb = ({ product, thumbPosition }) => {
   const [gallerySwiper, getGallerySwiper] = useState(null);
   const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
 
@@ -146,9 +146,9 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
   );
 };
 
-ProductImageGalleryLeftThumb.propTypes = {
+ProductImageGallerySideThumb.propTypes = {
   product: PropTypes.object,
   thumbPosition: PropTypes.string
 };
 
-export default ProductImageGalleryLeftThumb;
+export default ProductImageGallerySideThumb;
