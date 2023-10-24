@@ -99,15 +99,10 @@ const ProductGridSingleTwo = ({
 
 ProductGridSingleTwo.propTypes = {
   addToCart: PropTypes.func,
-  addToCompare: PropTypes.func,
-  addToWishlist: PropTypes.func,
   cartItem: PropTypes.object,
-  compareItem: PropTypes.object,
-  currency: PropTypes.object,
   product: PropTypes.object,
   sliderClassName: PropTypes.string,
   spaceBottomClass: PropTypes.string,
-  wishlistItem: PropTypes.object
 };
 
 export default ProductGridSingleTwo;

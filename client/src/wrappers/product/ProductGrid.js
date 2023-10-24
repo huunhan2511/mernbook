@@ -40,37 +40,18 @@ const ProductGrid = ({
 };
 
 ProductGrid.propTypes = {
-  addToCart: PropTypes.func,
   cartItems: PropTypes.array,
-  currency: PropTypes.object,
   products: PropTypes.array,
   sliderClassName: PropTypes.string,
   spaceBottomClass: PropTypes.string,
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    currency: state.currencyData,
     cartItems: state.cartData,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addToCart: (
-      item,
-      addToast,
-      quantityCount,
-    ) => {
-      dispatch(
-        addToCart(
-          item,
-          addToast,
-          quantityCount,
-        )
-      );
-    },
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductGrid);
+
+export default connect(mapStateToProps)(ProductGrid);

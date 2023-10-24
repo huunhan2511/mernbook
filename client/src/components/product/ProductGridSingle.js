@@ -55,8 +55,6 @@ const ProductGridSingle = ({
 };
 
 ProductGridSingle.propTypes = {
-  addToCart: PropTypes.func,
-  cartItem: PropTypes.object,
   product: PropTypes.object,
   sliderClassName: PropTypes.string,
   spaceBottomClass: PropTypes.string,
