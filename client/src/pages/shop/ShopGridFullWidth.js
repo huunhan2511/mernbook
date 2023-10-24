@@ -10,7 +10,7 @@ import ShopSidebar from '../../wrappers/product/ShopSidebar';
 import ShopTopbar from '../../wrappers/product/ShopTopbar';
 import ShopProducts from '../../wrappers/product/ShopProducts';
 import axios from 'axios';
-const ShopGridFullWidth = ({location}) => {
+const ShopGridFullWidth = ({}) => {
     const [layout, setLayout] = useState('grid three-column');
     const [keyword, setKeyword] = useState('');
     const [sortType, setSortType] = useState('');
@@ -106,14 +106,8 @@ const ShopGridFullWidth = ({location}) => {
 }
 
 ShopGridFullWidth.propTypes = {
-  location: PropTypes.object,
   products: PropTypes.array
 }
 
-const mapStateToProps = state => {
-    return{
-        
-    }
-}
 
-export default connect(mapStateToProps)(ShopGridFullWidth);
+export default ShopGridFullWidth;

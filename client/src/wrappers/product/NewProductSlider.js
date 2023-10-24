@@ -7,7 +7,6 @@ import ProductGridTwo from "./ProductGridTwo";
 const NewProductSlider = ({
   spaceTopClass,
   spaceBottomClass,
-  category,
   limit
 }) => {
   const settings = {
@@ -44,7 +43,6 @@ const NewProductSlider = ({
         <div className="row">
           <Swiper {...settings}>
             <ProductGridTwo
-              category={category}
               limit={limit}
               sliderClassName="swiper-slide"
               type="newArrival"
@@ -57,7 +55,6 @@ const NewProductSlider = ({
 };
 
 NewProductSlider.propTypes = {
-  category: PropTypes.string,
   limit: PropTypes.number,
   spaceBottomClass: PropTypes.string,
   spaceTopClass: PropTypes.string

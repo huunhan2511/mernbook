@@ -1,4 +1,4 @@
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import React from "react";
 import { connect } from "react-redux";
 import { useToasts } from "react-toast-notifications";
@@ -48,15 +48,16 @@ const ProductImageDescription = ({
 };
 
 ProductImageDescription.propTypes = {
-
+  spaceTopClass: PropTypes.string,
+  spaceBottomClass: PropTypes.string,
+  galleryType: PropTypes.string,
+  product: PropTypes.object,
+  cartItems: PropTypes.object,
 };
 
 const mapStateToProps = state => {
   return {
-    currency: state.currencyData,
     cartItems: state.cartData,
-    wishlistItems: state.wishlistData,
-    compareItems: state.compareData
   };
 };
 

@@ -1,7 +1,6 @@
 /*------- 14. Brand logo style  -------*/
 
-.brand-logo-active,
-.brand-logo-active-2 {
+.brand-logo-active{
   &.owl-carousel {
     .owl-item {
       img {
@@ -10,8 +9,7 @@
       }
     }
   }
-  .single-brand-logo,
-  .single-brand-logo2 {
+  .single-brand-logo{
     text-align: center;
     img {
       filter: grayscale(100%);
