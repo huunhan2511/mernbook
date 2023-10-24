@@ -6,7 +6,7 @@ import Logo from "../../components/header/Logo";
 import IconGroup from "../../components/header/IconGroup";
 import NavMenu from "../../components/header/NavMenu";
 import MobileMenu from "../../components/header/MobileMenu";
-import LanguageCurrencyChanger from "../../components/header/sub-components/LanguageCurrencyChanger";
+import HeaderContact from "../../components/header/sub-components/HeaderContact";
 
 const HeaderTwo = ({
   currency,
@@ -37,8 +37,7 @@ const HeaderTwo = ({
           <div className="row">
             
             <div className="col-lg-5 col-md-8 col-12">
-              {/* language currency changer */}
-              <LanguageCurrencyChanger/>
+              <HeaderContact/>
             </div>
 
             <div className="col-lg-2 d-none d-lg-block text-center">
