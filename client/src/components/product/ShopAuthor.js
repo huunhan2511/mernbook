@@ -55,7 +55,6 @@ const ShopAuthor = ({ getSortParams }) => {
 };
 
 ShopAuthor.propTypes = {
-  authors: PropTypes.array,
   getSortParams: PropTypes.func
 };
 

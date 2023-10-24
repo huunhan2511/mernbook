@@ -56,7 +56,6 @@ const ShopCategories = ({ getSortParams }) => {
 };
 
 ShopCategories.propTypes = {
-  categories: PropTypes.array,
   getSortParams: PropTypes.func
 };
 

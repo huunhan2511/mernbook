@@ -31,8 +31,8 @@ const ShopSidebar = ({ getSortParams, sideSpaceClass, getSearchByKeyword }) => {
 
 ShopSidebar.propTypes = {
   getSortParams: PropTypes.func,
-  products: PropTypes.array,
-  sideSpaceClass: PropTypes.string
+  sideSpaceClass: PropTypes.string,
+  getSearchByKeyword: PropTypes.func
 };
 
 export default ShopSidebar;
