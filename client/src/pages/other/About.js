@@ -5,8 +5,10 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import SectionTitleWithText from "../../components/section-title/SectionTitleWithText";
 import TeamMemberOne from "../../wrappers/team-member/TeamMemberOne";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
-const About = ({}) => {
+const About = ({location}) => {
+  const { pathname } = location;
 
   return (
     <Fragment>
@@ -14,10 +16,13 @@ const About = ({}) => {
         <title>Sagobo | Về chúng tôi</title>
         <meta
           name="description"
-          content="About page of flone react minimalist eCommerce template."
+          content="About page of react minimalist eCommerce template."
         />
       </MetaTags>
-      
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Về chúng tôi
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -31,6 +36,7 @@ const About = ({}) => {
 };
 
 About.propTypes = {
+  location: PropTypes.object
 };
 
 export default About;

@@ -10,7 +10,11 @@ import ShopSidebar from '../../wrappers/product/ShopSidebar';
 import ShopTopbar from '../../wrappers/product/ShopTopbar';
 import ShopProducts from '../../wrappers/product/ShopProducts';
 import axios from 'axios';
-const ShopGridFullWidth = ({}) => {
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+
+const ShopGridFullWidth = ({location}) => {
+    const { pathname } = location;
+
     const [layout, setLayout] = useState('grid three-column');
     const [keyword, setKeyword] = useState('');
     const [sortType, setSortType] = useState('');
@@ -61,9 +65,12 @@ const ShopGridFullWidth = ({}) => {
         <Fragment>
             <MetaTags>
                 <title>Sagobo | Sản phẩm</title>
-                <meta name="description" content="Shop page of flone react minimalist eCommerce template." />
+                <meta name="description" content="Shop page of react app sagobook" />
             </MetaTags>
-
+            <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+            <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+                Sản phẩm
+            </BreadcrumbsItem>
             <LayoutOne headerTop="visible">
                 {/* breadcrumb */}
                 <Breadcrumb />
@@ -106,7 +113,8 @@ const ShopGridFullWidth = ({}) => {
 }
 
 ShopGridFullWidth.propTypes = {
-  products: PropTypes.array
+  products: PropTypes.array,
+  location: PropTypes.object
 }
 
 

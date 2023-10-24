@@ -63,7 +63,7 @@ const LoginRegister = ({}) => {
         <title>Đăng nhập | Đăng ký</title>
         <meta
           name="description"
-          content="Compare page of flone react minimalist eCommerce template."
+          content="Compare page of react app sagobook"
         />
       </MetaTags>
      

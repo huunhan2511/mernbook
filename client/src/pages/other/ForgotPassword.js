@@ -4,7 +4,10 @@ import React, { Fragment,useState} from "react";
 import MetaTags from "react-meta-tags";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-const ForgotPassword = ({}) => {
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+
+const ForgotPassword = ({location}) => {
+  const { pathname } = location;
   
   const [values,setValue] = useState();
   const inputChange = (event)=>{
@@ -33,10 +36,13 @@ const ForgotPassword = ({}) => {
         <title>Quên mật khẩu</title>
         <meta
           name="description"
-          content="Compare page of flone react minimalist eCommerce template."
+          content="Compare page of react app sagobook"
         />
       </MetaTags>
-     
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Quên mật khẩu
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -79,6 +85,7 @@ const ForgotPassword = ({}) => {
 };
 
 ForgotPassword.propTypes = {
+  location: PropTypes.object
 };
 
 export default ForgotPassword;

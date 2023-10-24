@@ -12,8 +12,11 @@ import {useHistory} from "react-router-dom";
 import provinces from "../../data/checkout/province.json";
 import {clearAllFromCart} from "../../redux/actions/cartActions";
 import { useToasts } from "react-toast-notifications";
-const Checkout = ({ cartItems, clearAllFromCart }) => {
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+
+const Checkout = ({ cartItems, clearAllFromCart,location }) => {
   // Init
+  const { pathname } = location;
   let history = useHistory();
   const { addToast } = useToasts();
   let TotalPrice = 0;
@@ -195,7 +198,10 @@ const Checkout = ({ cartItems, clearAllFromCart }) => {
           content=""
         />
       </MetaTags>
-      
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Thanh toán
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -430,7 +436,8 @@ const Checkout = ({ cartItems, clearAllFromCart }) => {
 
 Checkout.propTypes = {
   cartItems: PropTypes.array,
-  removeFromCart: PropTypes.func
+  removeFromCart: PropTypes.func,
+  location: PropTypes.object
 };
 
 const mapStateToProps = state => {

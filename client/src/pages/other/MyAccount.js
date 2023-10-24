@@ -8,9 +8,12 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import CartDetail from "./CartDetail.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 let headerTable = ["Mã đơn hàng","Trạng thái","Phương thức thanh toán","Chi tiết","Thanh toán"];
-const MyAccount = ({  }) => {
+const MyAccount = ({ location }) => {
+  const { pathname } = location;
+
   let history = useHistory();
   const [flag,setFlag] = useState(true); 
   const [informations, setInformations] = useState();
@@ -160,7 +163,10 @@ const MyAccount = ({  }) => {
           content=""
         />
       </MetaTags>
-
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Tài khoản
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -370,6 +376,7 @@ const MyAccount = ({  }) => {
 };
 
 MyAccount.propTypes = {
+  location: PropTypes.object
 };
 
 export default MyAccount;

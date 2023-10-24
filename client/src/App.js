@@ -79,11 +79,11 @@ return (
               <Route
                   path={process.env.PUBLIC_URL + "/my-account"}
                   component={MyAccount}
-                />
-                <Route
-                  path={process.env.PUBLIC_URL + "/checkout"}
-                  component={Checkout}
-                />
+              />
+              <Route
+                path={process.env.PUBLIC_URL + "/checkout"}
+                component={Checkout}
+              />
               <Route
                 path={process.env.PUBLIC_URL + "/contact"}
                 component={Contact}
