@@ -13,70 +13,27 @@ const cartReducer = (state = initState, action) => {
     product = action.payload;
 
   if (action.type === ADD_TO_CART) {
-    // for non variant products
-    if (product.variation === undefined) {
-      const cartItem = cartItems.filter(item => item._id === product._id)[0];
-      if (cartItem === undefined) {
-        return [
-          ...cartItems,
-          {
-            ...product,
-            quantity: product.quantity ? product.quantity : 1,
-            cartItemId: uuid()
-          }
-        ];
-      } else {
-        return cartItems.map(item =>
-          item.cartItemId === cartItem.cartItemId
-            ? {
-                ...item,
-                quantity: product.quantity
-                  ? item.quantity + product.quantity
-                  : item.quantity + 1
-              }
-            : item
-        );
-      }
-      // for variant products
+    const cartItem = cartItems.filter(item => item._id === product._id)[0];
+    if (cartItem === undefined) {
+      return [
+        ...cartItems,
+        {
+          ...product,
+          quantity: product.quantity ? product.quantity : 1,
+          cartItemId: uuid()
+        }
+      ];
     } else {
-      const cartItem = cartItems.filter(
-        item =>
-          item.id === product._id &&
-          (product.cartItemId ? product.cartItemId === item.cartItemId : true)
-      )[0];
-
-      if (cartItem === undefined) {
-        return [
-          ...cartItems,
-          {
-            ...product,
-            quantity: product.quantity ? product.quantity : 1,
-            cartItemId: uuid()
-          }
-        ];
-      } else if (
-        cartItem !== undefined
-      ) {
-        return [
-          ...cartItems,
-          {
-            ...product,
-            quantity: product.quantity ? product.quantity : 1,
-            cartItemId: uuid()
-          }
-        ];
-      } else {
-        return cartItems.map(item =>
-          item.cartItemId === cartItem.cartItemId
-            ? {
-                ...item,
-                quantity: product.quantity
-                  ? item.quantity + product.quantity
-                  : item.quantity + 1,
-              }
-            : item
-        );
-      }
+      return cartItems.map(item =>
+        item.cartItemId === cartItem.cartItemId
+          ? {
+              ...item,
+              quantity: product.quantity
+                ? item.quantity + product.quantity
+                : item.quantity + 1
+            }
+          : item
+      );
     }
   }
 

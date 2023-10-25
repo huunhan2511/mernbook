@@ -28,6 +28,12 @@ const MobileNavMenu = ({ strings }) => {
           </Link>
         </li>
 
+        <li>
+          <Link to={process.env.PUBLIC_URL + "/cart"}>
+            Giỏ hàng
+          </Link>
+        </li>
+
       </ul>
     </nav>
   );

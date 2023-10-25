@@ -240,7 +240,6 @@ const Cart = ({
 Cart.propTypes = {
   addToCart: PropTypes.func,
   cartItems: PropTypes.array,
-  currency: PropTypes.object,
   decrementQty: PropTypes.func,
   removeAllFromCart: PropTypes.func,
   removeFromCart: PropTypes.func,

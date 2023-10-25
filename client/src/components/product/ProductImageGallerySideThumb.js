@@ -4,25 +4,8 @@ import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import Swiper from "react-id-swiper";
 
 const ProductImageGallerySideThumb = ({ product, thumbPosition }) => {
-  const [gallerySwiper, getGallerySwiper] = useState(null);
-  const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
-
-  // effect for swiper slider synchronize
-  useEffect(() => {
-    if (
-      gallerySwiper !== null &&
-      gallerySwiper.controller &&
-      thumbnailSwiper !== null &&
-      thumbnailSwiper.controller
-    ) {
-      gallerySwiper.controller.control = thumbnailSwiper;
-      thumbnailSwiper.controller.control = gallerySwiper;
-    }
-  }, [gallerySwiper, thumbnailSwiper]);
-
   // swiper slider settings
   const gallerySwiperParams = {
-    getSwiper: getGallerySwiper,
     spaceBetween: 10,
     loopedSlides: 5,
     loop: true,
@@ -30,7 +13,6 @@ const ProductImageGallerySideThumb = ({ product, thumbPosition }) => {
   };
 
   const thumbnailSwiperParams = {
-    getSwiper: getThumbnailSwiper,
     spaceBetween: 10,
     slidesPerView: 5,
     loopedSlides: 5,
