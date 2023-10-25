@@ -49,7 +49,7 @@ const CartDetail = ({id,handleEdit}) =>{
     }
     useEffect(() => {
         const fetchData = async () => {
-            await axios.get("https://sagobook.onrender.com/orders/"+id,config).then(response =>{
+            await axios.get(process.env.REACT_APP_API_URL + "orders/"+id,config).then(response =>{
                     setOrder(response.data.Order)
                     setOrderDetail(response.data.OrderDetail)
             })
@@ -64,7 +64,7 @@ const CartDetail = ({id,handleEdit}) =>{
         }
         var answer = window.confirm("Bạn chắc chắn muốn xóa đơn hàng");
         if (answer) {
-           await axios.patch(`https://sagobook.onrender.com/accounts/orders/${id}`,data,config).then((res)=>{
+           await axios.patch(process.env.REACT_APP_API_URL+"/accounts/orders/"+id,data,config).then((res)=>{
                alert(res.data.Message);
                handleClose();
                handleEdit();

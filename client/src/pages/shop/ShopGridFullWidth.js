@@ -30,7 +30,7 @@ const ShopGridFullWidth = ({location}) => {
     const [products, setProducts] = useState([]);
     React.useEffect(() => {
         const fetchData = async () => {
-        const result = await axios("https://sagobook.onrender.com/products");
+        const result = await axios(process.env.REACT_APP_API_URL + "products");
         setProducts(result.data);
     };
     fetchData();

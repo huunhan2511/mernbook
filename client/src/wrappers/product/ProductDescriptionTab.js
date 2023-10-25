@@ -16,7 +16,7 @@ const ProductDescriptionTab = ({
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState();
   const fetchData = async () => {
-    const result = await axios.get(`https://sagobook.onrender.com/comments/${productID}`);
+    const result = await axios.get(process.env.REACT_APP_API_URL+"comments/"+productID);
     const data = result.data;
     setComments(data);
   };

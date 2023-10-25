@@ -29,7 +29,7 @@ const MyAccount = ({ location }) => {
   const fetchInformation = async (event) => {
     let token = localStorage.getItem("accessToken");
     await axios.get(
-      "https://sagobook.onrender.com/accounts/information",
+      process.env.REACT_APP_API_URL + "accounts/information",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ const MyAccount = ({ location }) => {
   };
   const fetchHistoryOrders = async () =>{
       let token = localStorage.getItem("accessToken");
-      const response = await axios.get("https://sagobook.onrender.com/accounts/orders",{
+      const response = await axios.get(process.env.REACT_APP_API_URL + "accounts/orders",{
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -94,7 +94,7 @@ const MyAccount = ({ location }) => {
   const handleInfomations = async (event) =>{
     event.preventDefault();
     let token = localStorage.getItem("accessToken");
-    const response = await axios.patch("https://sagobook.onrender.com/accounts/information",
+    const response = await axios.patch(process.env.REACT_APP_API_URL + "accounts/information",
                     informations,
                     {
                       headers: {
@@ -122,7 +122,7 @@ const MyAccount = ({ location }) => {
         alert('Vui lòng xác nhận mật khẩu mới');
     }
       else {
-        const response = await axios.patch("https://sagobook.onrender.com/accounts/change-password", passwords,
+        const response = await axios.patch(process.env.REACT_APP_API_URL + "accounts/change-password", passwords,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,

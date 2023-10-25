@@ -23,7 +23,7 @@ const Checkout = ({ cartItems, clearAllFromCart,location }) => {
   const fetchInformation = async (event) => {
     let token = localStorage.getItem("accessToken");
     await axios.get(
-      "https://sagobook.onrender.com/accounts/information",
+      process.env.REACT_APP_API_URL + "accounts/information",
       {
         headers: {
           Authorization: `Bearer ${token}`,

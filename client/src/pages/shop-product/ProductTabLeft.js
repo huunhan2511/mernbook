@@ -16,7 +16,7 @@ const ProductTabLeft = ({ location }) => {
   const { pathname } = location;
   const [product, setProduct] = useState();
   const fetchData = async () => {
-        const result = await axios.get(`https://sagobook.onrender.com/products/${id}`);
+        const result = await axios.get(process.env.REACT_APP_API_URL+"products/"+id);
         const data = result.data;
         setProduct(data);
   };

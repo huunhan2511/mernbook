@@ -6,7 +6,7 @@ const ShopPublisher = ({ getSortParams }) => {
   const [publishers, setPublishers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-        const result = await axios("https://sagobook.onrender.com/publishers");
+        const result = await axios(process.env.REACT_APP_API_URL + "publishers");
         setPublishers(result.data);
     };
     fetchData();    
