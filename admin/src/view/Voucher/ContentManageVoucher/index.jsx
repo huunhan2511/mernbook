@@ -19,7 +19,7 @@ export default function ContentManageVoucher() {
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
         const fetchData = async ()=>{
-            await axios.get("https://sagobook.onrender.com/vouchers",{
+            await axios.get(process.env.REACT_APP_API_URL + "vouchers",{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
@@ -39,7 +39,7 @@ export default function ContentManageVoucher() {
         }
         else{
             event.preventDefault();
-            await axios.post("https://sagobook.onrender.com/vouchers",values,{
+            await axios.post(process.env.REACT_APP_API_URL + "vouchers",values,{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }

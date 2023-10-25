@@ -19,7 +19,7 @@ export default function Orders({flag}) {
             }
         }
         const fetchData = async ()=>{
-            await axios.get("https://sagobook.onrender.com/orders",config).then(response =>{
+            await axios.get(process.env.REACT_APP_API_URL + "orders",config).then(response =>{
                 setOrders(response.data)
             })
         }

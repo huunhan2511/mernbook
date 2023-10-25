@@ -24,7 +24,7 @@ export default function ContentManageProduct() {
     }
     useEffect(()=>{
         const fetchProduct = async () =>{
-            const reponse = await axios.get("https://sagobook.onrender.com/products");
+            const reponse = await axios.get(process.env.REACT_APP_API_URL + "products");
             setDataProduct(reponse.data);
         };
         fetchProduct();
