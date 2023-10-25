@@ -57,9 +57,8 @@ ProductGridTwo.propTypes = {
   spaceBottomClass: PropTypes.string,
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    currency: state.currencyData,
     cartItems: state.cartData,
   };
 };

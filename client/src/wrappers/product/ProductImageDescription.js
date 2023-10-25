@@ -52,7 +52,7 @@ ProductImageDescription.propTypes = {
   spaceBottomClass: PropTypes.string,
   galleryType: PropTypes.string,
   product: PropTypes.object,
-  cartItems: PropTypes.object,
+  cartItems: PropTypes.array,
 };
 
 const mapStateToProps = state => {

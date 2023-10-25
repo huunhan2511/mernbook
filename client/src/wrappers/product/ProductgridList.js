@@ -6,8 +6,6 @@ import ProductGridListSingle from "../../components/product/ProductGridListSingl
 
 const ProductGrid = ({
   products,
-  addToCart,
-  cartItems,
   sliderClassName,
   spaceBottomClass
 }) => {
@@ -19,10 +17,6 @@ const ProductGrid = ({
             sliderClassName={sliderClassName}
             spaceBottomClass={spaceBottomClass}
             product={product}
-            addToCart={addToCart}
-            cartItem={
-              cartItems.filter(cartItem => cartItem._id === product._id)[0]
-            }
             key={product._id}
           />
         );
@@ -32,35 +26,9 @@ const ProductGrid = ({
 };
 
 ProductGrid.propTypes = {
-  addToCart: PropTypes.func,
-  cartItems: PropTypes.array,
   products: PropTypes.array,
   sliderClassName: PropTypes.string,
   spaceBottomClass: PropTypes.string,
 };
 
-const mapStateToProps = state => {
-  return {
-    cartItems: state.cartData,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addToCart: (
-      item,
-      addToast,
-      quantityCount,
-    ) => {
-      dispatch(
-        addToCart(
-          item,
-          addToast,
-          quantityCount,
-        )
-      );
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductGrid);
+export default ProductGrid;

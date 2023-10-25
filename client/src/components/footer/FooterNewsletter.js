@@ -15,7 +15,7 @@ const FooterNewsletter = ({ spaceBottomClass, spaceLeftClass, sideMenu }) => {
       <div className="subscribe-style">
         <p>Đăng ký để nhận những thông tin mới nhất và sớm nhất.</p>
         {/* subscribe email */}
-        <SubscribeEmail mailchimpUrl="" />
+        <SubscribeEmail mailchimpUrl="//xxxx.us13.list-manage.com/subscribe/post?u=zefzefzef&id=fnfgn" />
       </div>
     </div>
   );
