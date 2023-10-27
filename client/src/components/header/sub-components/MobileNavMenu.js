@@ -1,8 +1,14 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 
 const MobileNavMenu = ({ strings }) => {
+  const history = useHistory();
+
+  const logout = () =>{
+    localStorage.removeItem("accessToken");
+    history.push("/login-register")
+  }
   return (
     <nav className="offcanvas-navigation" id="offcanvas-navigation">
       <ul>
@@ -34,7 +40,26 @@ const MobileNavMenu = ({ strings }) => {
           </Link>
         </li>
 
+        <li>
+          {localStorage.getItem('accessToken') ? 
+          <Link to={process.env.PUBLIC_URL + "/my-account"}>Trang của tôi</Link>
+          :
+          <Link to={process.env.PUBLIC_URL + "/login-register"}>Đăng nhập/ Đăng ký</Link>  
+          }
+        </li>
+        {
+        localStorage.getItem('accessToken') 
+        ?
+        <li >
+          <a href="#" onClick={logout}>
+            Đăng xuất
+          </a>
+        </li>
+        :
+        <li></li>
+        }
       </ul>
+      
     </nav>
   );
 };

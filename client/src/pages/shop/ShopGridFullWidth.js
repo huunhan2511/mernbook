@@ -14,7 +14,7 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 const ShopGridFullWidth = ({location}) => {
     const { pathname } = location;
-
+    console.log(location);
     const [layout, setLayout] = useState('grid three-column');
     const [keyword, setKeyword] = useState('');
     const [sortType, setSortType] = useState('');
