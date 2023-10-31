@@ -48,15 +48,7 @@ function getAllProducts(req, res){
 }
 
 function createProduct(req, res){
-    let {name, price, category, author, publisher, printLength, stock, hot, description} = req.body
-    let image = []
-
-    if(req.files) req.files.map((file) => {
-        image.push('http://localhost:5000/'+file.path)
-    })
-    image.map((item) => {
-      item = item.replace("/\\/g",'/')
-    })
+    let {name, price, category, author, publisher, printLength, stock, hot, description,image} = req.body
 
     productCtrl.createProduct(name, price, category, author, publisher, printLength, stock, hot, description, image).then((result) => {
         res.json(result)
@@ -80,13 +72,6 @@ function updateProduct(req, res){
     let image = []
     update = req.body
 
-    if(req.files) req.files.map((file) => {
-        image.push('http://localhost:5000/'+file.path)
-    })
-    image.map((item) => {
-      item = item.replace("/\\/g",'/')
-    })
-    update.image = image
     productCtrl.updateProduct(id, update).then((result) =>{
         res.json(result)
     }).catch((error) => {

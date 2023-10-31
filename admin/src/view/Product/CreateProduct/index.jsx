@@ -6,6 +6,7 @@ import { Upload } from 'antd';
 
 export default function CreateProduct({handleAdd}) {
     const [values,setValue] = useState();
+    const [images,setImage] = useState([]);
     const [validated,setValidated] = useState(false);
     const [category,setCategory] = useState([]); 
     const [publishers,setPublisher] = useState([]); 
@@ -29,36 +30,47 @@ export default function CreateProduct({handleAdd}) {
     };
     fetchData();
     },[])
+    const uploadImage = async (imagesList) => {
+      const configImgur = {
+        Authorization: 'Client-ID ' + process.env.REACT_APP_CLIENT_ID_IMGUR
+      };
+      var images = [];
+      for (const img of imagesList) {
+        let data = new FormData();
+        data.append('image', img);
+        const response = await axios.post(process.env.REACT_APP_API_IMGUR, data, {
+          headers: configImgur
+        });
+        images.push(response.data.data.link);
+      }
+      return images;
+    }
     
-    const handleEdit = async (event) =>{
-        const form = event.currentTarget;
-        setValidated(true);
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-        }else{
-          event.preventDefault();
-          var data = new FormData();
-          for(var key in values){
-              if(key !== 'image'){
-                data.append(key,values[key])
-              }
-          }
-          const token = localStorage.getItem('accessToken')
-          await axios.post(process.env.REACT_APP_API_URL + "products",data,{
-            headers :{
-              'Authorization' : `Bearer ${token}`
+    const handleEdit = async (event) => {
+      const form = event.currentTarget;
+      setValidated(true);
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+      } else {
+        event.preventDefault();
+          const imagesList = await uploadImage(images);
+          const data = {...values, image: imagesList}
+          const token = localStorage.getItem('accessToken');
+          const response = await axios.post(process.env.REACT_APP_API_URL + "products", data, {
+            headers: {
+              'Authorization': `Bearer ${token}`
             }
-          }).then(response=>{
-              if(response.data.Message === "Tạo sản phẩm thành công"){
-                alert(response.data.Message);
-                setValidated(false);
-                form.reset();
-                handleAdd()
-              }else{
-                alert(response.data.Message);
-              }
-          })
-        }
+          });
+    
+          if (response.data.Message === "Tạo sản phẩm thành công") {
+            alert(response.data.Message);
+            setValidated(false);
+            form.reset();
+            handleAdd();
+          } else {
+            alert(response.data.Message);
+          }
+      }
     }
     const dummyRequest = ({ file, onSuccess }) => {
       setTimeout(() => {
@@ -68,10 +80,11 @@ export default function CreateProduct({handleAdd}) {
 
    
     const handleUpload = (info) =>{
-      setValue((values)=>({
-        ...values,
-        image : info.file
-      }))
+      let images = []
+      info.fileList.map(file =>{
+        images.push(file.originFileObj)
+      })
+      setImage(images);
     }
     const inputChange = (event) =>{
       const target = event.target;
@@ -96,20 +109,11 @@ export default function CreateProduct({handleAdd}) {
 
     }
     const handleCheckProduct = () =>{
-      if(hotProduct){
-        setHotProduct(false)
+      setHotProduct(!hotProduct)
         setValue((values)=>({
           ...values,
-          hot : false
+          hot : !hotProduct
         }))
-      }else{
-        setHotProduct(true)
-        setValue((values)=>({
-          ...values,
-          hot : true
-        }))
-      }
-      
     }
     return (
       <>
@@ -186,7 +190,7 @@ export default function CreateProduct({handleAdd}) {
                           listType="picture"
                           onChange={handleUpload}
                           customRequest={dummyRequest}
-                          maxCount={1}
+                          maxCount={5}
                           accept=".jpg,.png"
                           beforeUpload={() => false} 
                         >

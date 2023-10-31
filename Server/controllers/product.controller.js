@@ -25,6 +25,8 @@ async function createProduct(name, price, category, author, publisher, printLeng
             "description": description,
             "image": image,
         })
+        console.log(image);
+
         let err = newProduct.validateSync()
         if (err) return errorMessage(err)      
         let product = await productModel.createProduct(newProduct)
