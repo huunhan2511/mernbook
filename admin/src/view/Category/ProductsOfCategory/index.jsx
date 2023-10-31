@@ -10,7 +10,7 @@ export default function ProductsOfCategory(props) {
     useEffect(() => {
         const token = localStorage.getItem('accessToken')
         const fetchProducts = async () =>{
-            await axios.get("https://sagobook.onrender.com/products/category/"+props.id,{
+            await axios.get(process.env.REACT_APP_API_URL + "products/category/"+props.id,{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }

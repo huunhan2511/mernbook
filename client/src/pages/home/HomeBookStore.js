@@ -29,7 +29,7 @@ const HomeBookStore = () => {
           responsiveClass="res-mrg-md-mt"
         />
         {/* tab product */}
-        <TabProductFour productTabClass="product-tab-pink2" />
+        <TabProductFour productTabClass="product-tab-pink" />
         {/* call to action */}
         <CtaOne
           spaceTopClass="pt-100"
@@ -39,7 +39,6 @@ const HomeBookStore = () => {
         <NewProductSlider
           spaceTopClass="pt-100"
           spaceBottomClass="pb-95"
-          type="newArrival"
           limit={6}
         />
         {/* brand logo slider */}

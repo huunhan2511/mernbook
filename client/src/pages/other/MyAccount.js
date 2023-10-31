@@ -8,9 +8,12 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import CartDetail from "./CartDetail.js";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
 let headerTable = ["Mã đơn hàng","Trạng thái","Phương thức thanh toán","Chi tiết","Thanh toán"];
 const MyAccount = ({ location }) => {
+  const { pathname } = location;
+
   let history = useHistory();
   const [flag,setFlag] = useState(true); 
   const [informations, setInformations] = useState();
@@ -26,7 +29,7 @@ const MyAccount = ({ location }) => {
   const fetchInformation = async (event) => {
     let token = localStorage.getItem("accessToken");
     await axios.get(
-      "https://sagobook.onrender.com/accounts/information",
+      process.env.REACT_APP_API_URL + "accounts/information",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -45,7 +48,7 @@ const MyAccount = ({ location }) => {
   };
   const fetchHistoryOrders = async () =>{
       let token = localStorage.getItem("accessToken");
-      const response = await axios.get("https://sagobook.onrender.com/accounts/orders",{
+      const response = await axios.get(process.env.REACT_APP_API_URL + "accounts/orders",{
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -54,7 +57,7 @@ const MyAccount = ({ location }) => {
   }
   const handleRepayment = async (orderId) =>{
     let token = localStorage.getItem("accessToken");
-    let response = await axios.post('https://sagobook.onrender.com/payment/re-payment',
+    let response = await axios.post(process.env.REACT_APP_API_URL + 'payment/re-payment',
         {
           id : orderId
         },
@@ -66,6 +69,7 @@ const MyAccount = ({ location }) => {
           alert('Máy chủ đăng gặp sự cố, vui lòng thử lại sau')
           return
         })
+        console.log(response.data)
     let tab = window.open(response.data, "_blank", 'noopener,noreferrer')
     tab=null;
   }
@@ -90,7 +94,7 @@ const MyAccount = ({ location }) => {
   const handleInfomations = async (event) =>{
     event.preventDefault();
     let token = localStorage.getItem("accessToken");
-    const response = await axios.patch("https://sagobook.onrender.com/accounts/information",
+    const response = await axios.patch(process.env.REACT_APP_API_URL + "accounts/information",
                     informations,
                     {
                       headers: {
@@ -118,7 +122,7 @@ const MyAccount = ({ location }) => {
         alert('Vui lòng xác nhận mật khẩu mới');
     }
       else {
-        const response = await axios.patch("https://sagobook.onrender.com/accounts/change-password", passwords,
+        const response = await axios.patch(process.env.REACT_APP_API_URL + "accounts/change-password", passwords,
                         {
                           headers: {
                             Authorization: `Bearer ${token}`,
@@ -160,7 +164,10 @@ const MyAccount = ({ location }) => {
           content=""
         />
       </MetaTags>
-
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Tài khoản
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -337,7 +344,7 @@ const MyAccount = ({ location }) => {
                                             <td>
                                               <button onClick = {()=>handleRepayment(order._id)}
                                                 disabled = {
-                                                            order.paymentMethod==="COD" || order.paymentMethod==="Online" && order.status!==1
+                                                            order.paymentMethod==="COD" || (order.paymentMethod==="Online" && order.status!==1)
                                                             ?
                                                             true
                                                             :
@@ -370,7 +377,7 @@ const MyAccount = ({ location }) => {
 };
 
 MyAccount.propTypes = {
-  location: PropTypes.object,
+  location: PropTypes.object
 };
 
 export default MyAccount;

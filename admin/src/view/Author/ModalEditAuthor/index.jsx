@@ -12,7 +12,7 @@ export default function ModalEditAuthor(props) {
     const handleEdit = async (event) =>{
       const token = localStorage.getItem('accessToken');
       event.preventDefault();
-      await axios.patch("https://sagobook.onrender.com/authors/"+props.dataModal._id,values,{
+      await axios.patch(process.env.REACT_APP_API_URL + "authors/"+props.dataModal._id,values,{
         headers:{
           'Authorization' : `Bearer ${token}` 
         }

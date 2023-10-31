@@ -162,21 +162,6 @@
             }
         }
     }
-    &.product-tab-pink2 {
-        a{
-            h4{
-                color: #000000;
-                border-bottom: 2px solid transparent;
-                &:hover{
-                    color: #ed59a0;
-                }
-            }
-            &.active h4 {
-                color: #ed59a0;
-                border-bottom: 2px solid ed59a0e90042;
-            }
-        }
-    }
 }
 
 .product-wrap, .product-list-image-wrap {

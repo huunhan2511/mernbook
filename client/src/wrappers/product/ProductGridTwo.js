@@ -1,13 +1,11 @@
 import PropTypes from "prop-types";
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import { getProducts } from "../../helpers/product";
 import ProductGridSingleTwo from "../../components/product/ProductGridSingleTwo";
 import { addToCart } from "../../redux/actions/cartActions";
 import axios from 'axios';
 const ProductGridTwo = ({
   type,
-  currency,
   addToCart,
   cartItems,
   sliderClassName,
@@ -15,7 +13,7 @@ const ProductGridTwo = ({
 }) => {
   const [products, setProducts] = useState();
   const fetchData = async () => {
-        let results = await axios.get('https://sagobook.onrender.com/');
+        let results = await axios.get(process.env.REACT_APP_API_URL + '');
         results = results.data;
         switch(type) {
           case 'newArrival':
@@ -39,7 +37,6 @@ const ProductGridTwo = ({
             sliderClassName={sliderClassName}
             spaceBottomClass={spaceBottomClass}
             product={product}
-            currency={currency}
             addToCart={addToCart}
             cartItem={
               cartItems.filter(cartItem => cartItem._id === product._id)[0]
@@ -55,21 +52,13 @@ const ProductGridTwo = ({
 ProductGridTwo.propTypes = {
   addToCart: PropTypes.func,
   cartItems: PropTypes.array,
-  currency: PropTypes.object,
   products: PropTypes.array,
   sliderClassName: PropTypes.string,
   spaceBottomClass: PropTypes.string,
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    products: getProducts(
-      state.productData.products,
-      ownProps.category,
-      ownProps.type,
-      ownProps.limit
-    ),
-    currency: state.currencyData,
     cartItems: state.cartData,
   };
 };

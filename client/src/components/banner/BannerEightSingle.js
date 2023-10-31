@@ -12,15 +12,14 @@ const BannerEightSingle = ({ data, banner, spaceBottomClass }) => {
         <Link to={'/product/'+ data._id}>
         <img src={process.env.PUBLIC_URL + `/assets/img/banner/banner-${banner}.png`} alt="" />
         </Link>
-        <div className="banner-content banner-pink">
-          <h3>{data.name}</h3>
-          <h4>
-            <span>{formatter.format(data.price)}</span>
-          </h4>
-          <Link to={'/product/'+ data._id}>
-            <i className="fa fa-long-arrow-right" />
-          </Link>
-        </div>
+        <Link to={'/product/'+ data._id}>
+          <div className="banner-content banner-pink">
+            <h3>{data.name}</h3>
+            <h4>
+              <span>{formatter.format(data.price)}</span>
+            </h4>
+          </div>
+        </Link>
       </div>
     </div>
   );

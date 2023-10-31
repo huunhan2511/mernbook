@@ -9,7 +9,7 @@ const HeroSliderSevenSingle = ({ data, sliderClass, banner }) => {
         sliderClass ? sliderClass : ""
       }`}
       style={{
-        'backgroundImage': `url(http://localhost:3000/assets/img/banner/new-${banner}.png)`,
+        'backgroundImage': `url(${process.env.PUBLIC_URL}/assets/img/banner/new-${banner}.png)`,
         'backgroundPosition': 'center', /* Center the image */
         'backgroundRepeat': 'no-repeat', /* Do not repeat the image */
         'backgroundSize': '700px 390px',

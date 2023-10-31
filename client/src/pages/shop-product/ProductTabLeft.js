@@ -8,12 +8,15 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import RelatedProductSlider from "../../wrappers/product/RelatedProductSlider";
 import ProductDescriptionTab from "../../wrappers/product/ProductDescriptionTab";
 import ProductImageDescription from "../../wrappers/product/ProductImageDescription";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+
 import axios from 'axios';
 const ProductTabLeft = ({ location }) => {
-  let { id } = useParams();
+  let { id } = useParams(); 
+  const { pathname } = location;
   const [product, setProduct] = useState();
   const fetchData = async () => {
-        const result = await axios.get(`https://sagobook.onrender.com/products/${id}`);
+        const result = await axios.get(process.env.REACT_APP_API_URL+"products/"+id);
         const data = result.data;
         setProduct(data);
   };
@@ -31,7 +34,12 @@ const ProductTabLeft = ({ location }) => {
           content=""
         />
       </MetaTags>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/products"}>Sản phẩm</BreadcrumbsItem>
 
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Chi tiết sản phẩm
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         <Breadcrumb />
         {/* product description with image */}
@@ -66,11 +74,8 @@ ProductTabLeft.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const productId = ownProps.match.params.id;
   return {
-    product: state.productData.products.filter(
-      single => single.id === productId
-    )[0]
+    
   };
 };
 

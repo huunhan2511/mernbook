@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import SectionTitleTwo from "../../components/section-title/SectionTitleTwo";
+import SectionTitle from "../../components/section-title/SectionTitle";
 import teamMemberData from "../../data/team-members/team-member-one.json";
 import TeamMemberOneSingle from "../../components/team-member/TeamMemberOneSingle";
 
@@ -13,9 +13,8 @@ const TeamMemberOne = ({ spaceTopClass, spaceBottomClass }) => {
     >
       <div className="container">
         {/* section title */}
-        <SectionTitleTwo
+        <SectionTitle
           titleText="Thành viên"
-          //subTitleText="Khoa CNTT - ĐH SaiGon"
           positionClass="text-center"
           spaceClass="mb-60"
         />

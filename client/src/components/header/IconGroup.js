@@ -2,17 +2,12 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Link,useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { removeFromCart } from "../../redux/actions/cartActions";
 
 const IconGroup = ({
-  currency,
   cartData,
   iconWhiteClass
 }) => {
   const history = useHistory();
-  // const handleClick = e => {
-  //   e.currentTarget.nextSibling.classList.toggle("active");
-  // };
 
   const triggerMobileMenu = () => {
     const offcanvasMobileMenu = document.querySelector(
@@ -81,22 +76,13 @@ IconGroup.propTypes = {
   cartData: PropTypes.array,
   currency: PropTypes.object,
   iconWhiteClass: PropTypes.string,
-  //removeFromCart: PropTypes.func,
 };
 
 const mapStateToProps = state => {
   return {
-    currency: state.currencyData,
     cartData: state.cartData,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    removeFromCart: (item, addToast) => {
-      dispatch(removeFromCart(item, addToast));
-    }
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(IconGroup);
+export default connect(mapStateToProps)(IconGroup);

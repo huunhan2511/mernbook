@@ -22,7 +22,7 @@ export default function ContentManagePublish() {
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
         const fetchData = async ()=>{
-            await axios.get("https://sagobook.onrender.com/publishers",{
+            await axios.get(process.env.REACT_APP_API_URL + "publishers",{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
@@ -42,7 +42,7 @@ export default function ContentManagePublish() {
         }
         else{
             event.preventDefault();
-            await axios.post("https://sagobook.onrender.com/publishers",values,{
+            await axios.post(process.env.REACT_APP_API_URL + "publishers",values,{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }

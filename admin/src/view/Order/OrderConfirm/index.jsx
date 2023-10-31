@@ -28,7 +28,7 @@ export default function OrderConfirm({flag,handleEdit}) {
                 'Authorization' : `Bearer ${token}` 
               }
         }
-        await axios.patch("https://sagobook.onrender.com/orders/"+id,status,config).then(response=>{
+        await axios.patch(process.env.REACT_APP_API_URL + "orders/"+id,status,config).then(response=>{
                 alert(response.data.Message);
                 handleEdit()
         })
@@ -37,7 +37,7 @@ export default function OrderConfirm({flag,handleEdit}) {
     useEffect(()=>{
         
         const fetchData = async ()=>{
-            await axios.get("https://sagobook.onrender.com/orders?status=1",config).then(response=>{
+            await axios.get(process.env.REACT_APP_API_URL + "orders?status=1",config).then(response=>{
                 setOrders(response.data)
             })
         }

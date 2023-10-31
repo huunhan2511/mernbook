@@ -15,10 +15,10 @@ const NotFound = ({ location }) => {
         <title>Sagobo | Not Found</title>
         <meta
           name="description"
-          content="404 page of flone react minimalist eCommerce template."
+          content="404 page of react app sagobook"
         />
       </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
         404 page
       </BreadcrumbsItem>
@@ -31,25 +31,12 @@ const NotFound = ({ location }) => {
               <div className="col-xl-7 col-lg-8 text-center">
                 <div className="error">
                   <h1>404</h1>
-                  <h2>OPPS! PAGE NOT FOUND</h2>
+                  <h2>OPPS! KHÔNG TÌM THẤY TRANG</h2>
                   <p>
-                    Sorry but the page you are looking for does not exist, have
-                    been removed, name changed or is temporarity unavailable.
+                  Xin lỗi nhưng trang bạn đang tìm kiếm không tồn tại, đã bị xóa, đã thay đổi tên hoặc tạm thời không có.
                   </p>
-                  <form className="searchform mb-50">
-                    <input
-                      type="text"
-                      name="search"
-                      id="error_search"
-                      placeholder="Search..."
-                      className="searchform__input"
-                    />
-                    <button type="submit" className="searchform__submit">
-                      <i className="fa fa-search" />
-                    </button>
-                  </form>
                   <Link to={process.env.PUBLIC_URL + "/"} className="error-btn">
-                    Back to home page
+                    Trở về trang chủ
                   </Link>
                 </div>
               </div>

@@ -130,15 +130,7 @@ function ProductModal(props) {
 }
 
 ProductModal.propTypes = {
-  addtoast: PropTypes.func,
-  addtocart: PropTypes.func,
-  cartitems: PropTypes.array,
-  discountedprice: PropTypes.number,
-  finaldiscountedprice: PropTypes.number,
-  finalproductprice: PropTypes.number,
-  onHide: PropTypes.func,
   product: PropTypes.object,
-  show: PropTypes.bool,
 };
 
 const mapStateToProps = state => {

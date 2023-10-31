@@ -23,11 +23,11 @@ export default function EditProduct() {
         }
       }
       const fetchData = async () => {
-        const response = await axios.get("https://sagobook.onrender.com/products/"+id);
+        const response = await axios.get(process.env.REACT_APP_API_URL + "products/"+id);
         // headers 
-        const responseCategory = await axios.get("https://sagobook.onrender.com/category",config);
-        const responseAuthor = await axios.get("https://sagobook.onrender.com/authors",config);
-        const responsePublisher = await axios.get("https://sagobook.onrender.com/publishers",config);
+        const responseCategory = await axios.get(process.env.REACT_APP_API_URL + "category",config);
+        const responseAuthor = await axios.get(process.env.REACT_APP_API_URL + "authors",config);
+        const responsePublisher = await axios.get(process.env.REACT_APP_API_URL + "publishers",config);
         setAuthor(responseAuthor.data);
         setCategory(responseCategory.data);
         setPublisher(responsePublisher.data);
@@ -45,7 +45,7 @@ export default function EditProduct() {
           data.append(key,values[key])
       }
       const token = localStorage.getItem('accessToken')
-      await axios.patch("https://sagobook.onrender.com/products/"+id,data,{
+      await axios.patch(process.env.REACT_APP_API_URL + "products/"+id,data,{
         headers :{
           'Authorization' : `Bearer ${token}`,
           'content-type': 'multipart/form-data'

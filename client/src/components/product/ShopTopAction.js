@@ -42,14 +42,6 @@ const ShopTopAction = ({
         >
           <i className="fa fa-th" />
         </button>
-        <button
-          onClick={e => {
-            getLayout("list");
-            setActiveLayout(e);
-          }}
-        >
-          <i className="fa fa-list-ul" />
-        </button>
       </div>
     </div>
   );

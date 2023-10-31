@@ -12,15 +12,18 @@ import {useHistory} from "react-router-dom";
 import provinces from "../../data/checkout/province.json";
 import {clearAllFromCart} from "../../redux/actions/cartActions";
 import { useToasts } from "react-toast-notifications";
-const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+
+const Checkout = ({ cartItems, clearAllFromCart,location }) => {
   // Init
+  const { pathname } = location;
   let history = useHistory();
   const { addToast } = useToasts();
   let TotalPrice = 0;
   const fetchInformation = async (event) => {
     let token = localStorage.getItem("accessToken");
     await axios.get(
-      "https://sagobook.onrender.com/accounts/information",
+      process.env.REACT_APP_API_URL + "accounts/information",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -99,7 +102,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
   const handleVoucher = async (event) => {
     event.preventDefault();
     let token = localStorage.getItem("accessToken");
-    const response = await axios.get('https://sagobook.onrender.com/vouchers/apply/'+voucher,
+    const response = await axios.get(process.env.REACT_APP_API_URL + 'vouchers/apply/'+voucher,
         {
           headers: {
           Authorization: `Bearer ${token}`,
@@ -133,7 +136,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
       "cart": cartItems
     }
     console.log(order);
-    let response = await axios.post('https://sagobook.onrender.com/orders',
+    let response = await axios.post(process.env.REACT_APP_API_URL + 'orders',
         order,
         {
           headers: {
@@ -169,7 +172,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
       "bankCode": "NCB",
       "cart": cartItems
     }
-    let response = await axios.post('https://sagobook.onrender.com/orders',
+    let response = await axios.post(process.env.REACT_APP_API_URL + 'orders',
         order,
         {
           headers: {
@@ -195,7 +198,10 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
           content=""
         />
       </MetaTags>
-      
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Thanh toán
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -218,7 +224,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
                               <input 
                                 type="text" 
                                 name="fullname"
-                                // value={informations.fullname}
+                                value={informations.fullname ? informations.fullname : ''}
                                 onChange = {(event)=>onInfomationsChange(event)}
                                 required
                               />
@@ -232,7 +238,7 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
                                 type="text"
                                 name="phone"
                                 onChange = {(event)=>onInfomationsChange(event)}
-                                // value={informations.phone}
+                                value={informations.phone ? informations.phone : '' }
                                 required
                               />
                             </div>
@@ -282,11 +288,11 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
                               <label>Địa chỉ</label>
                               <input
                                 className="billing-address"
-                                placeholder="vd: 273 An Dương Vương"
+                                placeholder="Ví dụ: 273 An Dương Vương"
                                 type="text"
                                 name="address"
                                 onChange = {(event)=>onInfomationsChange(event)}
-                                // value={informations.address}
+                                value={informations.address ? informations.address : '' }
                                 required
                               />
                             </div>
@@ -430,15 +436,13 @@ const Checkout = ({ location, cartItems, currency, clearAllFromCart }) => {
 
 Checkout.propTypes = {
   cartItems: PropTypes.array,
-  currency: PropTypes.object,
-  location: PropTypes.object,
-  removeFromCart: PropTypes.func
+  removeFromCart: PropTypes.func,
+  location: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
     cartItems: state.cartData,
-    currency: state.currencyData
   };
 };
 const mapDispatchToProps = dispatch => {
