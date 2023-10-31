@@ -7,31 +7,22 @@ import ProductsOfCategory from '../ProductsOfCategory';
 let headerTable = ["Tên thể loại","Sản phẩm","Xóa","Sửa"];
 
 export default function ContentManageCategory() {
-    const [flag,setFlag] = useState(false);
-    const handleEditFlag = () =>{
-        if(flag){
-            setFlag(false)
-        }else{
-            setFlag(true)
-        }
-    }
-
     const [dataCategory,setDataCategory] = useState([]);
     const [values,setValue] = useState();
     const [validated,setValidated] = useState(false);
-    useEffect(() => {
+    const fetchData = async () =>{
         const token = localStorage.getItem("accessToken");
-        const fetchData = async () =>{
-            await axios.get(process.env.REACT_APP_API_URL + "category",{
-                headers:{
-                    'Authorization' : `Bearer ${token}` 
-                }
-            }).then(response=>{
-                setDataCategory(response.data);
-            })
-        }
+        await axios.get(process.env.REACT_APP_API_URL + "category",{
+            headers:{
+                'Authorization' : `Bearer ${token}` 
+            }
+        }).then(response=>{
+            setDataCategory(response.data);
+        })
+    }
+    useEffect(() => {
         fetchData();
-    }, [flag]);
+    }, []);
 
 
     const submitFormAdd = async (event)=>{
@@ -50,7 +41,8 @@ export default function ContentManageCategory() {
             }).then(response =>{
                     if(response.data.Message){
                         alert(response.data.Message)
-                        handleEditFlag();
+                        setValidated(false);
+                        fetchData();
                         form.reset();
                     }
             })
@@ -76,7 +68,7 @@ export default function ContentManageCategory() {
             }
         }).then(response =>{
                 if(response.data.Message === "Xóa thể loại thành công" ){
-                    handleEditFlag();
+                    fetchData();
                 }else{
                     alert(response.data.Message)
                 }
@@ -106,7 +98,7 @@ export default function ContentManageCategory() {
                                             <td>{data.name}</td>
                                             <td><ProductsOfCategory id={data._id}/></td>
                                             <td><Button variant="danger" onClick={()=>deleteCategory(data._id)}><i className="fa fa-trash"></i></Button></td>
-                                            <td><ModalEditCategory dataModal={data} handleEdit = {handleEditFlag}/></td>
+                                            <td><ModalEditCategory dataModal={data} handleEdit = {fetchData}/></td>
                                         </tr>
                                     );
                                 })}

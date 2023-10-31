@@ -9,12 +9,8 @@ import OrderTranport from '../OrderTranport';
 export default function ContentManageOrder() {
     const [flag,setFlag] = React.useState(true);
     const handleEditFlag = () => {
-        if(flag){
-            setFlag(false)
-        }else{
-            setFlag(true)
-        }
-      }
+        setFlag(!flag);    
+    }
     return (
         <div className="ContentManageOrder">
             <Accordion defaultActiveKey="0" className="ContentManageUser__accordion">
