@@ -47,7 +47,7 @@ export default function ModalEditAuthor(props) {
             <Modal.Title>Sửa tác giả</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-                    <Form noValidate validated={validated} className="FormEditAuthor" onSubmit={(event)=> handleEdit(event)}>
+                    <Form noValidate validated={validated} className="FormEditAuthor" onSubmit={handleEdit}>
                             <Row>
                                 <Form.Group as={Col} controlId="formGridId">
                                     <Form.Label>ID</Form.Label>
