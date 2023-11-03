@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Card,Form } from 'react-bootstrap';
 import { Line,Doughnut } from 'react-chartjs-2';
 import Header from '../../components/Header';
+import { useAuth } from '../../Context/AuthContext';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -27,6 +28,7 @@ import {
   
 let labels = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"];
 export default function Dashboard() {
+    const { handleLogout } = useAuth();
     let token = localStorage.getItem('accessToken')
     let config = {
         headers:{
@@ -47,6 +49,8 @@ export default function Dashboard() {
         const fetchRevenue = async () =>{
             await axios.get(process.env.REACT_APP_API_URL + "orders/turnover?year="+yearRevenue,config).then(response=>{
                     setRevenue(response.data)
+            }).catch(res =>{
+                handleLogout();
             })
         }
         fetchRevenue();
@@ -55,6 +59,8 @@ export default function Dashboard() {
         const fetchOrderChart = async () =>{
             await axios.get(process.env.REACT_APP_API_URL + "orders/analytics?year="+yearOrder,config).then(response=>{
                     setOrderChart(response.data)
+            }).catch(res =>{
+                handleLogout();
             })
             
         }
@@ -64,8 +70,9 @@ export default function Dashboard() {
         const fetchData = async () =>{
             await axios.get(process.env.REACT_APP_API_URL + "orders/analytics?year="+getYear(),config).then(response=>{
                     setQuantityOrder(response.data)
+            }).catch(res =>{
+                handleLogout();
             })
-            
         }
         fetchData()
     },[])

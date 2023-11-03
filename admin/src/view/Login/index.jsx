@@ -3,7 +3,9 @@ import logo from "../../Image/SAGOBooK.png";
 import { Card,Form,Button,Image } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import axios from 'axios';
-export default function Login({handleLogin}) {
+import { useAuth } from "../../Context/AuthContext";
+export default function Login() {
+    const { handleLogin } = useAuth();
     let history = useHistory();
     const [login,setLogin] = useState({
         username : "",
@@ -24,7 +26,6 @@ export default function Login({handleLogin}) {
         
         if(reponse.data.accessToken){
             handleLogin(reponse.data.accessToken)
-            history.push("/Admin/Home")
         }else{
             alert(reponse.data.Message)
         }
