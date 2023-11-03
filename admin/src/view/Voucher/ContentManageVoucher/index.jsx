@@ -2,9 +2,11 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios';
 import { Accordion,Form,Col,Row,Button,Table} from 'react-bootstrap';
 import ModalEditVoucher from '../ModalEditVoucher';
+import { useAuth } from '../../../Context/AuthContext';
 let headerTable = ["Mã khuyến mãi","Giảm","Số lượng","Sửa"];
 
 export default function ContentManageVoucher() {
+    const {handleLogout} = useAuth();
     const [dataVoucher,setDataVoucher] = useState([]);
     const [validated,setValidated] = useState(false);
     const [values,setValue] = useState();
@@ -17,6 +19,8 @@ export default function ContentManageVoucher() {
         }).then(response =>{
             
             setDataVoucher(response.data);
+        }).catch(response =>{
+            handleLogout();
         })
     }
     useEffect(() => {

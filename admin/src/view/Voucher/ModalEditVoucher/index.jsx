@@ -1,7 +1,9 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import {Modal,Button,Form,Row,Col} from "react-bootstrap";
+import { useAuth } from '../../../Context/AuthContext';
 export default function ModalEditVoucher(props) {
+    const {handleLogout} = useAuth();
     const [show, setShow] = useState(false);  
     const [values,setValue] = useState({
         id: props.dataModal.id,
@@ -23,6 +25,8 @@ export default function ModalEditVoucher(props) {
           alert(response.data.Message)
           props.handleEdit();
           handleClose();
+      }).catch(response =>{
+        handleLogout();
       })
     }
     const inputChange = (event) =>{

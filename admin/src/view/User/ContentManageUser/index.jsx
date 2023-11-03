@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import { Table,Accordion } from 'react-bootstrap';
+import {useAuth} from "../../../Context/AuthContext";
 const headerTable = ["Username","Email"];
 
 export default function ContentManageUser() {
+    const { handleLogout } = useAuth();
     const [dataUser,setDataUser] = useState([]);
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
@@ -14,6 +16,8 @@ export default function ContentManageUser() {
                 }
             }).then(response=>{
                 setDataUser(response.data);
+            }).catch(response =>{
+                handleLogout();
             })
         }
         fetchData();
