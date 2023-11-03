@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import axios from 'axios';
 import { Card,Table,Button } from 'react-bootstrap';
 import { useParams,useHistory,useRouteMatch } from 'react-router'
+import { useAuth } from '../../../Context/AuthContext';
 
 import CancelOrder from '../CancelOrder';
 import html2canvas from 'html2canvas';
@@ -10,6 +11,7 @@ import image from "../../../Image/header.png"
 let headerTable = ["Tên sản phẩm","Số lượng","Giá"];
 export default function OrderDetail() {
     const history = useHistory();
+    const {handleLogout} = useAuth();
     let token = localStorage.getItem('accessToken');
     let config ={
         headers:{
@@ -24,7 +26,10 @@ export default function OrderDetail() {
         await axios.get(process.env.REACT_APP_API_URL + "orders/"+id,config).then(response =>{
                 setOrder(response.data.Order)
                 setOrderDetail(response.data.OrderDetail)
+        }).catch(response => {
+            handleLogout();
         })
+
     };
     useEffect(() => {
       fetchData();

@@ -2,9 +2,12 @@ import React,{useState,useEffect} from 'react';
 import axios from "axios";
 import {Button, Form,Row,Col} from "react-bootstrap";
 import { Upload } from 'antd';
+import { useAuth } from '../../../Context/AuthContext';
 
 
 export default function CreateProduct({handleAdd}) {
+  const {handleLogout} = useAuth();
+
     const [values,setValue] = useState();
     const [images,setImage] = useState([]);
     const [validated,setValidated] = useState(false);
@@ -60,16 +63,21 @@ export default function CreateProduct({handleAdd}) {
             headers: {
               'Authorization': `Bearer ${token}`
             }
-          });
+          }).then(response=>{
+            if (response.data.Message === "Tạo sản phẩm thành công") {
+              alert(response.data.Message);
+              setValidated(false);
+              form.reset();
+              handleAdd();
+            } else {
+              alert(response.data.Message);
+            }
+          }).catch(response => {
+            handleLogout();
+        })
+
     
-          if (response.data.Message === "Tạo sản phẩm thành công") {
-            alert(response.data.Message);
-            setValidated(false);
-            form.reset();
-            handleAdd();
-          } else {
-            alert(response.data.Message);
-          }
+          
       }
     }
     const dummyRequest = ({ file, onSuccess }) => {

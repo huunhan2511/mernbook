@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import axios from "axios";
 import { Table,Button } from 'react-bootstrap';
+import { useAuth } from '../../../Context/AuthContext';
 
 import {useRouteMatch,useHistory } from 'react-router-dom';
 let headerTable = ["Mã đơn hàng","Tên người dùng","Số điện thoại","Tổng tiền","Chi tiết","Xác nhận"];
 export default function OrderTranport({flag,handleEdit}) {
+    const {handleLogout} = useAuth();
+
     const match = useRouteMatch();
     const [orders,setOrders] = useState([])
     const history = useHistory();
@@ -24,14 +27,20 @@ export default function OrderTranport({flag,handleEdit}) {
         await axios.patch(process.env.REACT_APP_API_URL + "orders/"+id,status,config).then(response=>{
                 alert(response.data.Message);
                 handleEdit()
+        }).catch(response => {
+            handleLogout();
         })
+
     }
     useEffect(()=>{
         
         const fetchData = async ()=>{
         await axios.get(process.env.REACT_APP_API_URL + "orders?status=3",config).then(response=>{
                 setOrders(response.data)
+            }).catch(response => {
+                handleLogout();
             })
+    
         }
         fetchData();
     },[flag])

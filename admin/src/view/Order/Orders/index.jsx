@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
+import { useAuth } from '../../../Context/AuthContext';
 
 import {useRouteMatch,useHistory } from 'react-router-dom';
 import {Table,Button} from 'react-bootstrap'
 let headerTable = ["Tên người mua hàng","Số điện thoại","Tổng tiền","Trạng thái","Chi tiết"];
 export default function Orders({flag}) {
+    const {handleLogout} = useAuth();
+
     const [orders,setOrders] = useState([]);
     const match = useRouteMatch();
     const history = useHistory();
@@ -21,7 +24,10 @@ export default function Orders({flag}) {
         const fetchData = async ()=>{
             await axios.get(process.env.REACT_APP_API_URL + "orders",config).then(response =>{
                 setOrders(response.data)
+            }).catch(response => {
+                handleLogout();
             })
+    
         }
         fetchData();
     }, [flag])

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React,{useState} from 'react'
 import {Button,Form,Modal,FloatingLabel} from "react-bootstrap";
+import { useAuth } from '../../../Context/AuthContext';
 
 let reasonCancel = [
   {reason: "Hết hàng"},
@@ -8,6 +9,8 @@ let reasonCancel = [
   {reason: "Khác"}
 ]
 export default function CancelOrder({order,handleEdit,text}) {
+    const {handleLogout} = useAuth();
+
     const [show, setShow] = useState(false);  
     const [isDisable,setDisabled] = useState(true);  
     const [disableInput,setDisableInput] = useState(true);
@@ -36,7 +39,9 @@ export default function CancelOrder({order,handleEdit,text}) {
               alert(response.data.Message)
               handleClose();
             }
-      })
+      }).catch(response => {
+        handleLogout();
+    })
     }
     const inputChange = (event) =>{
       const target = event.target;

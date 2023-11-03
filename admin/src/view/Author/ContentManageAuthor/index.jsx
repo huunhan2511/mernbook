@@ -2,8 +2,10 @@ import axios from 'axios';
 import React, { useState,useEffect, useCallback} from 'react'
 import { Accordion,Table,Form,Button,Row,Col} from 'react-bootstrap';
 import ModalEditAuthor from "../ModalEditAuthor";
+import { useAuth } from '../../../Context/AuthContext';
 let headerTable = ["Tên tác giả","Sửa"];
 export default function ContentManageAuthor() {
+    const {handleLogout} = useAuth();
     const [authors,setauthors] = useState([]);
     const [validated,setValidated] = useState(false);
     const [values,setValue] = useState({
@@ -17,6 +19,8 @@ export default function ContentManageAuthor() {
             }
         }).then(response=>{
             setauthors(response.data);
+        }).catch(response => {
+            handleLogout();
         })
     };
     useEffect(() => {

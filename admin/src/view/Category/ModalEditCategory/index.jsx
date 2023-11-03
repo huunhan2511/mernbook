@@ -1,7 +1,10 @@
 import React,{useState} from 'react';
 import {Modal,Button,Form,Row,Col} from "react-bootstrap";
 import axios from "axios";
+import { useAuth } from '../../../Context/AuthContext';
+
 export default function ModalEditCategory(props) {
+    const {handleLogout} = useAuth();
     const [show, setShow] = useState(false);  
     const [values,setValue] = useState(props.dataModal);
     const [isDisable,setDisabled] = useState(true);
@@ -21,7 +24,9 @@ export default function ModalEditCategory(props) {
           alert(response.data.Message)
           props.handleEdit();
           handleClose();
-      })
+      }).catch(response => {
+        handleLogout();
+    })
     }
 
     const inputChange = (event) =>{

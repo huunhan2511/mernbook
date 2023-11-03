@@ -4,9 +4,12 @@ import React,{useState,useEffect} from 'react'
 import { Accordion,Form,Col,Row,Button,Table} from 'react-bootstrap';
 import ModalEditCategory from '../ModalEditCategory';
 import ProductsOfCategory from '../ProductsOfCategory';
+import { useAuth } from '../../../Context/AuthContext';
+
 let headerTable = ["Tên thể loại","Sản phẩm","Xóa","Sửa"];
 
 export default function ContentManageCategory() {
+    const {handleLogout} = useAuth();
     const [dataCategory,setDataCategory] = useState([]);
     const [values,setValue] = useState();
     const [validated,setValidated] = useState(false);
@@ -18,6 +21,8 @@ export default function ContentManageCategory() {
             }
         }).then(response=>{
             setDataCategory(response.data);
+        }).catch(response => {
+            handleLogout();
         })
     }
     useEffect(() => {

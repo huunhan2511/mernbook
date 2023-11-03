@@ -1,11 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
 import { Table,Button } from 'react-bootstrap';
+import { useAuth } from '../../../Context/AuthContext';
 
 import {useRouteMatch,useHistory } from 'react-router-dom';
 let headerTable = ["Mã đơn hàng","Tên người dùng","Số điện thoại","Tổng tiền","Chi tiết"];
 
 export default function OrderDelivered({flag}) {
+    const {handleLogout} = useAuth();
     const match = useRouteMatch();
     const [orders,setOrders] = useState([]);
     const history = useHistory();
@@ -18,19 +20,23 @@ export default function OrderDelivered({flag}) {
           return ((index % 3) ? next : (next + ',')) + prev
         })
     }
-    useEffect(()=>{
+   
+    const fetchData = async ()=>{
         const token = localStorage.getItem("accessToken")
         const config = {
             headers: {
                 'Authorization' : `Bearer ${token}` 
             }
         }
-        const fetchData = async ()=>{
-            await axios.get(process.env.REACT_APP_API_URL + "orders?status=4",config).then(response=>{
-            
-                setOrders(response.data)
-            })
-        }
+        await axios.get(process.env.REACT_APP_API_URL + "orders?status=4",config).then(response=>{
+        
+            setOrders(response.data)
+        }).catch(response => {
+            handleLogout();
+        })
+
+    }
+    useEffect(()=>{
         fetchData();
     },[flag])
     return (

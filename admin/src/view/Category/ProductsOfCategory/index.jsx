@@ -1,8 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import {Modal,Button,Table} from "react-bootstrap";
 import axios from "axios";
+import { useAuth } from '../../../Context/AuthContext';
+
 const headerTable = ["Tên sách","Số lượng","Đơn giá","Số trang"];
 export default function ProductsOfCategory(props) {
+    const {handleLogout} = useAuth();
     const [show, setShow] = useState(false);  
     const [products,setProducts] = useState([])
     const handleClose = () => setShow(false);
@@ -16,7 +19,9 @@ export default function ProductsOfCategory(props) {
                 }
             }).then(response=>{
                   setProducts(response.data.products)
-            })
+            }).catch(response => {
+              handleLogout();
+          })
         }
         fetchProducts();
     }, []);

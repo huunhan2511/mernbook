@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React,{useState,useEffect} from 'react'
 import { Accordion,Table,Button } from 'react-bootstrap';
+import { useAuth } from '../../../Context/AuthContext';
 
 import {useRouteMatch,useHistory } from 'react-router-dom';
 import CreateProduct from '../CreateProduct';
 const headerTable = ["Tên sách","Số lượng","Đơn giá","Tác giả","Thể loại","Số trang","Chi tiết"];
 
 export default function ContentManageProduct() {
+    const {handleLogout} = useAuth();
+
     const [dataProduct, setDataProduct] = useState([]);
     const match = useRouteMatch();
     const history = useHistory();
@@ -14,8 +17,12 @@ export default function ContentManageProduct() {
         history.push(`${match.url}/${data._id}`)
     }
     const fetchProduct = async () =>{
-        const reponse = await axios.get(process.env.REACT_APP_API_URL + "products");
-        setDataProduct(reponse.data);
+        const reponse = await axios.get(process.env.REACT_APP_API_URL + "products").then(response => {
+            setDataProduct(reponse.data);
+        }).catch(response => {
+            handleLogout();
+        })
+
     };
     useEffect(()=>{
         fetchProduct();

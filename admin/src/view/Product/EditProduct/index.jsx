@@ -3,9 +3,12 @@ import {Card,Button, Form,Row,Col} from "react-bootstrap";
 import { Upload } from 'antd';
 import { useHistory, useParams } from 'react-router';
 import axios from 'axios';
+import { useAuth } from '../../../Context/AuthContext';
 
 
 export default function EditProduct() {
+  const {handleLogout} = useAuth();
+
     const history = useHistory();
     const {id} = useParams();
     const [isDisable,setDisabled] = useState(true);
@@ -57,7 +60,10 @@ export default function EditProduct() {
           }else{
             alert(response.data.Message);
           }
-      })
+      }).catch(response => {
+        handleLogout();
+    })
+
       
     }
     const dummyRequest = ({ file, onSuccess }) => {
