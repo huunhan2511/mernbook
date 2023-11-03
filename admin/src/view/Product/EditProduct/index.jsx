@@ -28,12 +28,21 @@ export default function EditProduct() {
       const fetchData = async () => {
         const response = await axios.get(process.env.REACT_APP_API_URL + "products/"+id);
         // headers 
-        const responseCategory = await axios.get(process.env.REACT_APP_API_URL + "category",config);
-        const responseAuthor = await axios.get(process.env.REACT_APP_API_URL + "authors",config);
-        const responsePublisher = await axios.get(process.env.REACT_APP_API_URL + "publishers",config);
-        setAuthor(responseAuthor.data);
-        setCategory(responseCategory.data);
-        setPublisher(responsePublisher.data);
+        const responseCategory = await axios.get(process.env.REACT_APP_API_URL + "category",config).then(res=>{
+          setCategory(res.data);
+        }).catch(res=>{
+          handleLogout();
+        })
+        const responseAuthor = await axios.get(process.env.REACT_APP_API_URL + "authors",config).then(res=>{
+          setAuthor(res.data);
+        }).catch(res=>{
+          handleLogout();
+        });
+        const responsePublisher = await axios.get(process.env.REACT_APP_API_URL + "publishers",config).then(res=>{
+          setPublisher(res.data);
+        }).catch(res=>{
+          handleLogout();
+        });
         const data = response.data;
         setProduct(data);
     };
