@@ -4,19 +4,24 @@ import MetaTags from "react-meta-tags";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import LocationMap from "../../components/contact/LocationMap";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 
-const Contact = ({ location }) => {
-
+const Contact = ({location}) => {
+  const { pathname } = location;
+  console.log(pathname);
   return (
     <Fragment>
       <MetaTags>
         <title>Sagobo | Liên hệ</title>
         <meta
           name="description"
-          content="Contact of flone react minimalist eCommerce template."
+          content="Contact of react app sagobook"
         />
       </MetaTags>
-      
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Liên hệ
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -42,10 +47,10 @@ const Contact = ({ location }) => {
                     </div>
                     <div className="contact-info-dec">
                       <p>
-                        <a href="mailto:urname@email.com">sagobo@sago.vn</a>
+                        <a href="mailto:sagobo@sago.vn">sagobo@sago.vn</a>
                       </p>
                       <p>
-                        <a href="//urwebsitenaem.com">sago.vn</a>
+                        <a href="#">sago.vn</a>
                       </p>
                     </div>
                   </div>

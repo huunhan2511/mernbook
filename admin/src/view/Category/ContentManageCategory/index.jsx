@@ -7,31 +7,22 @@ import ProductsOfCategory from '../ProductsOfCategory';
 let headerTable = ["Tên thể loại","Sản phẩm","Xóa","Sửa"];
 
 export default function ContentManageCategory() {
-    const [flag,setFlag] = useState(false);
-    const handleEditFlag = () =>{
-        if(flag){
-            setFlag(false)
-        }else{
-            setFlag(true)
-        }
-    }
-
     const [dataCategory,setDataCategory] = useState([]);
     const [values,setValue] = useState();
     const [validated,setValidated] = useState(false);
-    useEffect(() => {
+    const fetchData = async () =>{
         const token = localStorage.getItem("accessToken");
-        const fetchData = async () =>{
-            await axios.get("https://sagobook.onrender.com/category",{
-                headers:{
-                    'Authorization' : `Bearer ${token}` 
-                }
-            }).then(response=>{
-                setDataCategory(response.data);
-            })
-        }
+        await axios.get(process.env.REACT_APP_API_URL + "category",{
+            headers:{
+                'Authorization' : `Bearer ${token}` 
+            }
+        }).then(response=>{
+            setDataCategory(response.data);
+        })
+    }
+    useEffect(() => {
         fetchData();
-    }, [flag]);
+    }, []);
 
 
     const submitFormAdd = async (event)=>{
@@ -43,14 +34,15 @@ export default function ContentManageCategory() {
         }
         else{
             event.preventDefault();
-            await axios.post("https://sagobook.onrender.com/category",values,{
+            await axios.post(process.env.REACT_APP_API_URL + "category",values,{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
             }).then(response =>{
                     if(response.data.Message){
                         alert(response.data.Message)
-                        handleEditFlag();
+                        setValidated(false);
+                        fetchData();
                         form.reset();
                     }
             })
@@ -69,14 +61,14 @@ export default function ContentManageCategory() {
     }
     const deleteCategory = async (data) =>{
         const token = localStorage.getItem("accessToken");
-        await axios.delete("https://sagobook.onrender.com/category/"+data,
+        await axios.delete(process.env.REACT_APP_API_URL + "category/"+data,
         {
             headers:{
                 'Authorization' : `Bearer ${token}` 
             }
         }).then(response =>{
                 if(response.data.Message === "Xóa thể loại thành công" ){
-                    handleEditFlag();
+                    fetchData();
                 }else{
                     alert(response.data.Message)
                 }
@@ -106,7 +98,7 @@ export default function ContentManageCategory() {
                                             <td>{data.name}</td>
                                             <td><ProductsOfCategory id={data._id}/></td>
                                             <td><Button variant="danger" onClick={()=>deleteCategory(data._id)}><i className="fa fa-trash"></i></Button></td>
-                                            <td><ModalEditCategory dataModal={data} handleEdit = {handleEditFlag}/></td>
+                                            <td><ModalEditCategory dataModal={data} handleEdit = {fetchData}/></td>
                                         </tr>
                                     );
                                 })}

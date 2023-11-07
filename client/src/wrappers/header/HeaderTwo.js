@@ -6,14 +6,9 @@ import Logo from "../../components/header/Logo";
 import IconGroup from "../../components/header/IconGroup";
 import NavMenu from "../../components/header/NavMenu";
 import MobileMenu from "../../components/header/MobileMenu";
-import LanguageCurrencyChanger from "../../components/header/sub-components/LanguageCurrencyChanger";
+import HeaderContact from "../../components/header/sub-components/HeaderContact";
 
-const HeaderTwo = ({
-  currency,
-  changeCurrency,
-  currentLanguageCode,
-  dispatch
-}) => {
+const HeaderTwo = ({}) => {
   const [scroll, setScroll] = useState(0);
   const [headerTop, setHeaderTop] = useState(0);
 
@@ -37,13 +32,7 @@ const HeaderTwo = ({
           <div className="row">
             
             <div className="col-lg-5 col-md-8 col-12">
-              {/* language currency changer */}
-              <LanguageCurrencyChanger
-                currency={currency}
-                changeCurrency={changeCurrency}
-                currentLanguageCode={currentLanguageCode}
-                dispatch={dispatch}
-              />
+              <HeaderContact/>
             </div>
 
             <div className="col-lg-2 d-none d-lg-block text-center">
@@ -89,25 +78,7 @@ const HeaderTwo = ({
 };
 
 HeaderTwo.propTypes = {
-  changeCurrency: PropTypes.func,
-  currency: PropTypes.object,
-  currentLanguageCode: PropTypes.string,
-  dispatch: PropTypes.func
 };
 
-const mapStateToProps = state => {
-  return {
-    currency: state.currencyData
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(multilanguage(HeaderTwo));
+export default HeaderTwo;

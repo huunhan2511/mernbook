@@ -12,7 +12,7 @@ export default function ModalEditAuthor(props) {
     const handleEdit = async (event) =>{
       const token = localStorage.getItem('accessToken');
       event.preventDefault();
-      await axios.patch("https://sagobook.onrender.com/authors/"+props.dataModal._id,values,{
+      await axios.patch(process.env.REACT_APP_API_URL + "authors/"+props.dataModal._id,values,{
         headers:{
           'Authorization' : `Bearer ${token}` 
         }
@@ -47,7 +47,7 @@ export default function ModalEditAuthor(props) {
             <Modal.Title>Sửa tác giả</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-                    <Form noValidate validated={validated} className="FormEditAuthor" onSubmit={(event)=> handleEdit(event)}>
+                    <Form noValidate validated={validated} className="FormEditAuthor" onSubmit={handleEdit}>
                             <Row>
                                 <Form.Group as={Col} controlId="formGridId">
                                     <Form.Label>ID</Form.Label>

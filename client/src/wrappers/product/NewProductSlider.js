@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
 import Swiper from "react-id-swiper";
-import SectionTitleThree from "../../components/section-title/SectionTitleThree";
+import SectionTitle from "../../components/section-title/SectionTitle";
 import ProductGridTwo from "./ProductGridTwo";
 
 const NewProductSlider = ({
   spaceTopClass,
   spaceBottomClass,
-  category,
   limit
 }) => {
   const settings = {
@@ -36,7 +35,7 @@ const NewProductSlider = ({
       } ${spaceTopClass ? spaceTopClass : ""}`}
     >
       <div className="container">
-        <SectionTitleThree
+        <SectionTitle
           titleText="Sản phẩm mới"
           positionClass="text-center"
           spaceClass="mb-60"
@@ -44,7 +43,6 @@ const NewProductSlider = ({
         <div className="row">
           <Swiper {...settings}>
             <ProductGridTwo
-              category={category}
               limit={limit}
               sliderClassName="swiper-slide"
               type="newArrival"
@@ -57,7 +55,6 @@ const NewProductSlider = ({
 };
 
 NewProductSlider.propTypes = {
-  category: PropTypes.string,
   limit: PropTypes.number,
   spaceBottomClass: PropTypes.string,
   spaceTopClass: PropTypes.string

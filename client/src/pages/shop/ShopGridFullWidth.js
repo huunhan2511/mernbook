@@ -10,7 +10,11 @@ import ShopSidebar from '../../wrappers/product/ShopSidebar';
 import ShopTopbar from '../../wrappers/product/ShopTopbar';
 import ShopProducts from '../../wrappers/product/ShopProducts';
 import axios from 'axios';
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+
 const ShopGridFullWidth = ({location}) => {
+    const { pathname } = location;
+    console.log(location);
     const [layout, setLayout] = useState('grid three-column');
     const [keyword, setKeyword] = useState('');
     const [sortType, setSortType] = useState('');
@@ -26,7 +30,7 @@ const ShopGridFullWidth = ({location}) => {
     const [products, setProducts] = useState([]);
     React.useEffect(() => {
         const fetchData = async () => {
-        const result = await axios("https://sagobook.onrender.com/products");
+        const result = await axios(process.env.REACT_APP_API_URL + "products");
         setProducts(result.data);
     };
     fetchData();
@@ -61,9 +65,12 @@ const ShopGridFullWidth = ({location}) => {
         <Fragment>
             <MetaTags>
                 <title>Sagobo | Sản phẩm</title>
-                <meta name="description" content="Shop page of flone react minimalist eCommerce template." />
+                <meta name="description" content="Shop page of react app sagobook" />
             </MetaTags>
-
+            <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+            <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+                Sản phẩm
+            </BreadcrumbsItem>
             <LayoutOne headerTop="visible">
                 {/* breadcrumb */}
                 <Breadcrumb />
@@ -106,14 +113,9 @@ const ShopGridFullWidth = ({location}) => {
 }
 
 ShopGridFullWidth.propTypes = {
-  location: PropTypes.object,
-  products: PropTypes.array
+  products: PropTypes.array,
+  location: PropTypes.object
 }
 
-const mapStateToProps = state => {
-    return{
-        products: state.productData.products
-    }
-}
 
-export default connect(mapStateToProps)(ShopGridFullWidth);
+export default ShopGridFullWidth;

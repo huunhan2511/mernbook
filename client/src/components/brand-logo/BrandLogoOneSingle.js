@@ -8,7 +8,7 @@ const BrandLogoOneSingle = ({ data, sliderClassName, spaceBottomClass }) => {
         spaceBottomClass ? spaceBottomClass : ""
       }`}
     >
-      <img src={process.env.PUBLIC_URL + data.image} alt="" />
+      <img src={process.env.PUBLIC_URL + data.image} alt="brand" />
     </div>
   );
 };

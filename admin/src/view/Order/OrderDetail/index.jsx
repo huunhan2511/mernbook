@@ -17,26 +17,18 @@ export default function OrderDetail() {
         }
     }
     const {id} = useParams();
-    const [flag,setFlag] = useState(true)
     const [order,setOrder] = useState();
     const [orderDetail,setOrderDetail] = useState();
-    const handleEditFlag= () =>{
-        if(flag){
-            setFlag(false);
-        }else{
-            setFlag(true);
-        }
-    }
-    useEffect(() => {
-        
-        const fetchData = async () => {
-        await axios.get("https://sagobook.onrender.com/orders/"+id,config).then(response =>{
+
+    const fetchData = async () => {
+        await axios.get(process.env.REACT_APP_API_URL + "orders/"+id,config).then(response =>{
                 setOrder(response.data.Order)
                 setOrderDetail(response.data.OrderDetail)
         })
-      };
+    };
+    useEffect(() => {
       fetchData();
-    }, [flag])
+    }, [])
     const formatCash= (str) =>{
         let text = String(str)
         return text.split('').reverse().reduce((prev, next, index) => {
@@ -50,9 +42,9 @@ export default function OrderDetail() {
         const status = {
             status : order.status._id+1
         }
-        await axios.patch("https://sagobook.onrender.com/orders/"+order._id,status,config).then(response=>{
+        await axios.patch(process.env.REACT_APP_API_URL + "orders/"+order._id,status,config).then(response=>{
                 alert(response.data.Message);
-                handleEditFlag()
+                fetchData()
         })
     }
     const printStateOrder = (stateOrder) =>{
@@ -104,7 +96,7 @@ export default function OrderDetail() {
                     </h5>
                     {order &&
                     <div className="btnExport">
-                        <Button variant="secondary" onClick={()=>printDocument()}>Xuất hóa đơn</Button>
+                        <Button variant="secondary" onClick={printDocument}>Xuất hóa đơn</Button>
                     </div>
                     }
                     </div>
@@ -179,7 +171,7 @@ export default function OrderDetail() {
                         </div>
                         <div className="btnConfirmOrder d-flex justify-content-between px-3 py-1">
                             <div className="btnCancel">
-                                <CancelOrder order={order} handleEdit={handleEditFlag} text="Hủy đơn hàng"/>
+                                <CancelOrder order={order} handleEdit={fetchData} text="Hủy đơn hàng"/>
                             </div>
                             <div className="btnConfirm">
                                 <Button variant="success" 

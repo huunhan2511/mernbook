@@ -20,7 +20,7 @@ export default function Login({handleLogin}) {
     }
     const Login = async (event) =>{
         event.preventDefault();
-        const reponse = await axios.post("https://sagobook.onrender.com/admin/login",login);
+        const reponse = await axios.post(process.env.REACT_APP_API_URL + "admin/login",login);
         
         if(reponse.data.accessToken){
             handleLogin(reponse.data.accessToken)

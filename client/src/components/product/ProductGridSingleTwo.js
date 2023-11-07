@@ -14,7 +14,6 @@ const ProductGridSingleTwo = ({
 }) => {
   const [modalShow, setModalShow] = useState(false);
   const { addToast } = useToasts();
-
   return (
     <Fragment>
       <div
@@ -44,38 +43,9 @@ const ProductGridSingleTwo = ({
                 ""
               )}
             </Link>
-            {product.discount || product.new ? (
-              <div className="product-img-badges">
-                {product.discount ? (
-                  <span className="pink">-{product.discount}%</span>
-                ) : (
-                  ""
-                )}
-                {product.new ? <span className="purple">Mới</span> : ""}
-              </div>
-            ) : (
-              ""
-            )}
 
             <div className="product-action-2">
-              {product.affiliateLink ? (
-                <a
-                  href={product.affiliateLink}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  title="Buy now"
-                >
-                  {" "}
-                  <i className="fa fa-shopping-cart"></i>{" "}
-                </a>
-              ) : product.variation && product.variation.length >= 1 ? (
-                <Link
-                  to={`${process.env.PUBLIC_URL}/product/${product._id}`}
-                  title="Select options"
-                >
-                  <i className="fa fa-cog"></i>
-                </Link>
-              ) : product.stock && product.stock > 0 ? (
+               {product.stock && product.stock > 0 ? (
                 <button
                   onClick={() => addToCart(product, addToast)}
                   className={
@@ -84,20 +54,17 @@ const ProductGridSingleTwo = ({
                       : ""
                   }
                   disabled={cartItem !== undefined && cartItem.quantity > 0}
-                  title={
-                    cartItem !== undefined ? "Added to cart" : "Thêm vào giỏ"
-                  }
+                  title="Thêm vào giỏ"
                 >
-                  {" "}
-                  <i className="fa fa-shopping-cart"></i>{" "}
+                  <i className="fa fa-shopping-cart"></i>
                 </button>
               ) : (
-                <button disabled className="active" title="Out of stock">
+                <button disabled className="active" title="Hết hàng">
                   <i className="fa fa-shopping-cart"></i>
                 </button>
               )}
 
-              <button onClick={() => setModalShow(true)} title="Quick View">
+              <button onClick={() => setModalShow(true)} title="Xem nhanh">
                 <i className="fa fa-eye"></i>
               </button>
 
@@ -132,15 +99,10 @@ const ProductGridSingleTwo = ({
 
 ProductGridSingleTwo.propTypes = {
   addToCart: PropTypes.func,
-  addToCompare: PropTypes.func,
-  addToWishlist: PropTypes.func,
   cartItem: PropTypes.object,
-  compareItem: PropTypes.object,
-  currency: PropTypes.object,
   product: PropTypes.object,
   sliderClassName: PropTypes.string,
   spaceBottomClass: PropTypes.string,
-  wishlistItem: PropTypes.object
 };
 
 export default ProductGridSingleTwo;

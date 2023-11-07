@@ -3,14 +3,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
-import SectionTitleThree from "../../components/section-title/SectionTitleThree";
+import SectionTitle from "../../components/section-title/SectionTitle";
 import ProductGridTwo from "./ProductGridTwo";
 
 const TabProductFour = ({ spaceBottomClass, category, productTabClass }) => {
   return (
     <div className={`product-area ${spaceBottomClass ? spaceBottomClass : ""}`}>
       <div className="container">
-        <SectionTitleThree
+        <SectionTitle
           titleText="Sản phẩm nổi bật"
           positionClass="text-center"
         />

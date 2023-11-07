@@ -1,39 +1,28 @@
 import axios from 'axios';
-import React, { useState,useEffect} from 'react'
+import React, { useState,useEffect, useCallback} from 'react'
 import { Accordion,Table,Form,Button,Row,Col} from 'react-bootstrap';
 import ModalEditAuthor from "../ModalEditAuthor";
 let headerTable = ["Tên tác giả","Sửa"];
 export default function ContentManageAuthor() {
-    const [flag,setFlag] = useState(false);
-    const handleEditFlag = () =>{
-        if(flag){
-            setFlag(false)
-        }else{
-            setFlag(true)
-        }
-    }
-
-
     const [authors,setauthors] = useState([]);
     const [validated,setValidated] = useState(false);
     const [values,setValue] = useState({
         name: ""
     });
-
-    useEffect(() => {
+    const fetchAuthor = async () =>{
         const token = localStorage.getItem("accessToken");
-        const fetchAuthor = async () =>{
-            await axios.get("https://sagobook.onrender.com/authors",{
-                headers:{
-                    'Authorization' : `Bearer ${token}` 
-                }
-            }).then(response=>{
-                setauthors(response.data);
-            })
-        };
+        await axios.get(process.env.REACT_APP_API_URL + "authors",{
+            headers:{
+                'Authorization' : `Bearer ${token}` 
+            }
+        }).then(response=>{
+            setauthors(response.data);
+        })
+    };
+    useEffect(() => {
         fetchAuthor();
-    }, [flag])
-    const submitFormAdd = async (event)=>{
+    }, [])
+    const submitFormAdd = useCallback(async (event)=>{
         const token = localStorage.getItem("accessToken");
         setValidated(true);
         const form = event.currentTarget;
@@ -42,21 +31,22 @@ export default function ContentManageAuthor() {
         }
         else{
             event.preventDefault();
-            await axios.post("https://sagobook.onrender.com/authors",values,{
+            await axios.post(process.env.REACT_APP_API_URL + "authors",values,{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
             }).then(response =>{
                     if(response.data.Message){
                         alert(response.data.Message)
-                        handleEditFlag();
+                        fetchAuthor();
+                        setValidated(false);
                         form.reset();
                     }  
             })
             
         }
 
-    };
+    });
 
     const inputChange = (event) =>{
         const target = event.target;
@@ -90,7 +80,7 @@ export default function ContentManageAuthor() {
                                     return (
                                         <tr key={key}>
                                             <td>{author.name}</td>
-                                            <td><ModalEditAuthor dataModal={author} handleEdit={handleEditFlag}/></td>
+                                            <td><ModalEditAuthor dataModal={author} handleEdit={fetchAuthor}/></td>
                                         </tr>
                                     );
                                 })}
@@ -102,11 +92,11 @@ export default function ContentManageAuthor() {
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>Thêm tác giả</Accordion.Header>
                     <Accordion.Body>
-                        <Form noValidate validated={validated} onSubmit={(event)=>submitFormAdd(event)} className="FormAddVoucher">
+                        <Form noValidate validated={validated} onSubmit={submitFormAdd} className="FormAddVoucher">
                             <Row>
                                 <Form.Group as={Col} controlId="formGridNameAuthor">
                                     <Form.Label>Tên tác giả</Form.Label>
-                                    <Form.Control type='text' name="name" required onChange={(event)=>inputChange(event)}/>
+                                    <Form.Control type='text' name="name" required onChange={inputChange}/>
                                     <Form.Control.Feedback type="invalid">Vui lòng nhập tên tác giả</Form.Control.Feedback>
                                 </Form.Group>
                             </Row>

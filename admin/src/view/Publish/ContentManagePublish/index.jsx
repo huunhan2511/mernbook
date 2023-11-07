@@ -6,32 +6,22 @@ import ModalEditPublish from '../ModalEditPublish';
 const headerTable = ["Tên nhà xuất bản","Sửa"];
 
 export default function ContentManagePublish() {
-    const [flag,setFlag] = useState(false);
-    const handleEditFlag = () =>{
-        if(flag){
-            setFlag(false)
-        }else{
-            setFlag(true)
-        }
-    }
-
     const [dataPublish,setDataPublish] = useState([]);
     const [values,setValue] = useState();
     const [validated,setValidated] = useState(false);
-
-    useEffect(() => {
+    const fetchData = async ()=>{
         const token = localStorage.getItem("accessToken");
-        const fetchData = async ()=>{
-            await axios.get("https://sagobook.onrender.com/publishers",{
-                headers:{
-                    'Authorization' : `Bearer ${token}` 
-                }
-            }).then(response=>{
-                setDataPublish(response.data);
-            })
-        }
+        await axios.get(process.env.REACT_APP_API_URL + "publishers",{
+            headers:{
+                'Authorization' : `Bearer ${token}` 
+            }
+        }).then(response=>{
+            setDataPublish(response.data);
+        })
+    }
+    useEffect(() => {
         fetchData();
-    }, [flag]);
+    }, []);
     
     const submitFormAdd = async (event)=>{
         const token = localStorage.getItem("accessToken");
@@ -42,14 +32,15 @@ export default function ContentManagePublish() {
         }
         else{
             event.preventDefault();
-            await axios.post("https://sagobook.onrender.com/publishers",values,{
+            await axios.post(process.env.REACT_APP_API_URL + "publishers",values,{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
             }).then(response =>{
                     if(response.data.Message){
                         alert(response.data.Message)
-                        handleEditFlag();
+                        setValidated(false);
+                        fetchData();
                         form.reset();
                     }
             })
@@ -89,7 +80,7 @@ export default function ContentManagePublish() {
                                     return (
                                         <tr key={key}>
                                             <td>{data.name}</td>
-                                            <td><ModalEditPublish dataModal={data} handleEdit ={handleEditFlag}/></td>
+                                            <td><ModalEditPublish dataModal={data} handleEdit ={fetchData}/></td>
                                         </tr>
                                     );
                                 })}
@@ -101,11 +92,11 @@ export default function ContentManagePublish() {
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>Thêm nhà xuất bản</Accordion.Header>
                     <Accordion.Body>
-                        <Form noValidate validated={validated} onSubmit={(event)=>submitFormAdd(event)} className="FormAddPublish">
+                        <Form noValidate validated={validated} onSubmit={submitFormAdd} className="FormAddPublish">
                             <Row>
                                 <Form.Group as={Col} controlId="formGridNamePublish">
                                     <Form.Label>Tên nhà xuất bản</Form.Label>
-                                    <Form.Control type='text' name="name" required onChange={(event)=>inputChange(event)}/>
+                                    <Form.Control type='text' name="name" required onChange={inputChange}/>
                                     <Form.Control.Feedback type="invalid">Vui lòng nhập tên nhà xuất bản</Form.Control.Feedback>
                                 </Form.Group>
                             </Row>

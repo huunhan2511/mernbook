@@ -4,7 +4,10 @@ import React, { Fragment,useState} from "react";
 import MetaTags from "react-meta-tags";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-const ForgotPassword = ({ location }) => {
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
+
+const ForgotPassword = ({location}) => {
+  const { pathname } = location;
   
   const [values,setValue] = useState();
   const inputChange = (event)=>{
@@ -20,7 +23,7 @@ const ForgotPassword = ({ location }) => {
   }
   const handleSubmitEmail = async (event) =>{
       event.preventDefault();
-      const response = await axios.post("https://sagobook.onrender.com/auth/reset-password",values)
+      const response = await axios.post(process.env.REACT_APP_API_URL + "auth/reset-password",values)
       if(response.data.Error){
         alert(response.data.Error)
       }else{
@@ -33,10 +36,13 @@ const ForgotPassword = ({ location }) => {
         <title>Quên mật khẩu</title>
         <meta
           name="description"
-          content="Compare page of flone react minimalist eCommerce template."
+          content="Compare page of react app sagobook"
         />
       </MetaTags>
-     
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Quên mật khẩu
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />

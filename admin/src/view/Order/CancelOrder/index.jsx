@@ -83,9 +83,9 @@ export default function CancelOrder({order,handleEdit,text}) {
               <Modal.Title>Lý do hủy đơn hàng</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form noValidate className="FormCancelOrder" onSubmit={(event)=>hanldeSubmit(event)}>
+              <Form noValidate className="FormCancelOrder" onSubmit={hanldeSubmit}>
                     <Form.Group controlId="formGridNumberPage">
-                        <Form.Select name="cancelreason" onChange={(event)=>inputChange(event)}>
+                        <Form.Select name="cancelreason" onChange={inputChange}>
                           <option value="">Chọn lí do hủy đơn hàng</option>
                           {reasonCancel.map((value,key)=>{
                             return (                                
@@ -96,7 +96,7 @@ export default function CancelOrder({order,handleEdit,text}) {
                     </Form.Group>
                     <Form.Group controlId="formGridNumberPage" className="mt-3">
                     <FloatingLabel controlId="floatingTextarea" label="Nhập lý do khác" className="mb-3">
-                        <Form.Control as="textarea" disabled={disableInput} name="cancelreason" onChange={(event)=>textChange(event)}/>
+                        <Form.Control as="textarea" disabled={disableInput} name="cancelreason" onChange={textChange}/>
                     </FloatingLabel>
                     </Form.Group>
                     <div className="btnSubmit d-flex justify-content-end">

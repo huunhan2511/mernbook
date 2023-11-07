@@ -10,25 +10,16 @@ export default function ContentManageProduct() {
     const [dataProduct, setDataProduct] = useState([]);
     const match = useRouteMatch();
     const history = useHistory();
-    
-    const [flag,setFlag] = useState(true);
-    const handleEditFlag = () => {
-        if(flag){
-          setFlag(false)
-        }else{
-          setFlag(true)
-        }
-      }
     const handleEditProduct = (data)=>{
         history.push(`${match.url}/${data._id}`)
     }
+    const fetchProduct = async () =>{
+        const reponse = await axios.get(process.env.REACT_APP_API_URL + "products");
+        setDataProduct(reponse.data);
+    };
     useEffect(()=>{
-        const fetchProduct = async () =>{
-            const reponse = await axios.get("https://sagobook.onrender.com/products");
-            setDataProduct(reponse.data);
-        };
         fetchProduct();
-    },[flag])
+    },[])
     const formatCash= (str) =>{
         return str.split('').reverse().reduce((prev, next, index) => {
           return ((index % 3) ? next : (next + ',')) + prev
@@ -74,7 +65,7 @@ export default function ContentManageProduct() {
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>Tạo sản phẩm</Accordion.Header>
                     <Accordion.Body>
-                        <CreateProduct handleAdd={handleEditFlag}/>
+                        <CreateProduct handleAdd={fetchProduct}/>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>

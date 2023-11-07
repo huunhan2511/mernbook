@@ -9,7 +9,6 @@ const BrandLogoSliderTwo = () => {
     loop: true,
     autoplay: {
       delay: 3000,
-      disableOnInteraction: false
     },
     grabCursor: true,
     breakpoints: {
@@ -32,10 +31,11 @@ const BrandLogoSliderTwo = () => {
     <div className={`brand-logo-area`}>
       <div className="container">
         <div className="bg-gray-6 brand-logo-wrap">
-          <div className="brand-logo-active-2">
+          <div className="brand-logo-active">
             <Swiper {...settings}>
               {brandLogoData &&
                 brandLogoData.map((single, key) => {
+                  console.log(single)
                   return (
                     <BrandLogoOneSingle
                       data={single}

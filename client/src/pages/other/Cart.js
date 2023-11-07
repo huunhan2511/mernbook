@@ -5,6 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import MetaTags from "react-meta-tags";
 import { connect } from "react-redux";
 import { formatter } from "../../helpers/product";
+import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import {
   addToCart,
   decrementQty,
@@ -16,27 +17,31 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 
 const Cart = ({
-  location,
   cartItems,
   decrementQty,
   addToCart,
   removeFromCart,
-  removeAllFromCart
+  removeAllFromCart,
+  location
 }) => {
   const [quantityCount] = useState(1);
   const { addToast } = useToasts();
   let cartTotalPrice = 0;
-
+  const { pathname } = location;
+  
   return (
     <Fragment>
       <MetaTags>
         <title>Sagobo | Giỏ hàng</title>
         <meta
           name="description"
-          content="Cart page of flone react minimalist eCommerce template."
+          content="Cart page of react app sagobook"
         />
       </MetaTags>
-
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang chủ</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+        Giỏ hàng
+      </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
@@ -235,17 +240,15 @@ const Cart = ({
 Cart.propTypes = {
   addToCart: PropTypes.func,
   cartItems: PropTypes.array,
-  currency: PropTypes.object,
   decrementQty: PropTypes.func,
-  location: PropTypes.object,
   removeAllFromCart: PropTypes.func,
-  removeFromCart: PropTypes.func
+  removeFromCart: PropTypes.func,
+  location: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
     cartItems: state.cartData,
-    currency: state.currencyData
   };
 };
 

@@ -5,31 +5,23 @@ import ModalEditVoucher from '../ModalEditVoucher';
 let headerTable = ["Mã khuyến mãi","Giảm","Số lượng","Sửa"];
 
 export default function ContentManageVoucher() {
-    const [flag,setFlag] = useState(false);
-    const handleEditFlag = () =>{
-        if(flag){
-            setFlag(false)
-        }else{
-            setFlag(true)
-        }
-    }
     const [dataVoucher,setDataVoucher] = useState([]);
     const [validated,setValidated] = useState(false);
     const [values,setValue] = useState();
-    useEffect(() => {
+    const fetchData = async ()=>{
         const token = localStorage.getItem("accessToken");
-        const fetchData = async ()=>{
-            await axios.get("https://sagobook.onrender.com/vouchers",{
-                headers:{
-                    'Authorization' : `Bearer ${token}` 
-                }
-            }).then(response =>{
-                
-                setDataVoucher(response.data);
-            })
-        }
+        await axios.get(process.env.REACT_APP_API_URL + "vouchers",{
+            headers:{
+                'Authorization' : `Bearer ${token}` 
+            }
+        }).then(response =>{
+            
+            setDataVoucher(response.data);
+        })
+    }
+    useEffect(() => {
         fetchData();
-    }, [flag]);
+    }, []);
     const submitFormAdd = async (event)=>{
         const token = localStorage.getItem("accessToken");
         setValidated(true);
@@ -39,14 +31,15 @@ export default function ContentManageVoucher() {
         }
         else{
             event.preventDefault();
-            await axios.post("https://sagobook.onrender.com/vouchers",values,{
+            await axios.post(process.env.REACT_APP_API_URL + "vouchers",values,{
                 headers:{
                     'Authorization' : `Bearer ${token}` 
                 }
             }).then(response =>{
                     if(response.data.Message){
                         alert(response.data.Message)
-                        handleEditFlag();
+                        setValidated(false);
+                        fetchData();
                         form.reset();
                     }
             })
@@ -87,7 +80,7 @@ export default function ContentManageVoucher() {
                                             <td>{data.code}</td>
                                             <td>{data.discount}</td>
                                             <td>{data.quantity}</td>
-                                            <td><ModalEditVoucher dataModal={data} handleEdit= {handleEditFlag}/></td>
+                                            <td><ModalEditVoucher dataModal={data} handleEdit= {fetchData}/></td>
                                         </tr>
                                     );
                                 })}
@@ -99,30 +92,30 @@ export default function ContentManageVoucher() {
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>Thêm mã khuyến mãi</Accordion.Header>
                     <Accordion.Body>
-                        <Form noValidate validated={validated} onSubmit={(event)=>submitFormAdd(event)} className="FormAddVoucher">
+                        <Form noValidate validated={validated} onSubmit={submitFormAdd} className="FormAddVoucher">
                             <Row>
                                 <Form.Group as={Col} controlId="formGridNameVoucher">
                                     <Form.Label>Mã khuyến mãi</Form.Label>
-                                    <Form.Control type='text' name="code" required onChange={(event)=>inputChange(event)}/>
+                                    <Form.Control type='text' name="code" required onChange={inputChange}/>
                                     <Form.Control.Feedback type="invalid">Vui lòng nhập mã khuyến mãi</Form.Control.Feedback>
                                 </Form.Group>
                             </Row>
                             <Row>
                                 <Form.Group as={Col} controlId="formGridDiscountVoucher">
                                     <Form.Label>Giảm giá</Form.Label>
-                                    <Form.Control type='number' name="discount" required onChange={(event)=>inputChange(event)}/>
+                                    <Form.Control type='number' name="discount" required onChange={inputChange}/>
                                     <Form.Control.Feedback type="invalid">Vui lòng giảm giá</Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="formGridQuantityVoucher">
                                     <Form.Label>Số lượng</Form.Label>
-                                    <Form.Control type='number' name="quantity" required onChange={(event)=>inputChange(event)}/>
+                                    <Form.Control type='number' name="quantity" required onChange={inputChange}/>
                                     <Form.Control.Feedback type="invalid">Vui lòng nhập số lượng</Form.Control.Feedback>
                                 </Form.Group>
                                 
                             </Row>
                             <Form.Group controlId="formDescriptionVoucher">
                                 <Form.Label>Mô tả</Form.Label>
-                                <Form.Control as="textarea" name="description" onChange={(event)=>inputChange(event)}/>
+                                <Form.Control as="textarea" name="description" onChange={inputChange}/>
                             </Form.Group>
                             <div className="btnSubmit">
                                 <Button variant="success" type="submit">
